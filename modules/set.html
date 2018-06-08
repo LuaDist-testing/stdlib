@@ -38,13 +38,19 @@ High level methods (representation unknown)<br>
 <strong>difference:</strong> <em>Find the difference of two sets<br></em>
 &nbsp;&nbsp;<strong>s, t</strong>: sets<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>r</strong>: self with elements of t removed<br>
+&nbsp;&nbsp;<strong>r</strong>: s with elements of t removed<br>
+</p><hr>
+<p>
+<strong>difference:</strong> <em>Find the symmetric difference of two sets<br></em>
+&nbsp;&nbsp;<strong>s, t</strong>: sets<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>r</strong>: elements of s and t that are in s or t but not both<br>
 </p><hr>
 <p>
 <strong>intersection:</strong> <em>Find the intersection of two sets<br></em>
 &nbsp;&nbsp;<strong>s, t</strong>: sets<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>r</strong>: set intersection of self and t<br>
+&nbsp;&nbsp;<strong>r</strong>: set intersection of s and t<br>
 </p><hr>
 <p>
 <strong>union:</strong> <em>Find the union of two sets<br></em>
@@ -56,7 +62,7 @@ High level methods (representation unknown)<br>
 <strong>subset:</strong> <em>Find whether one set is a subset of another<br></em>
 &nbsp;&nbsp;<strong>s, t</strong>: sets<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>r</strong>: true if self is a subset of t, false otherwise<br>
+&nbsp;&nbsp;<strong>r</strong>: true if s is a subset of t, false otherwise<br>
 </p><hr>
 <p>
 <strong>propersubset:</strong> <em>Find whether one set is a proper subset of<br></em>
@@ -79,7 +85,10 @@ set + table = union<br>
 set - table = set difference<br>
 </p><hr>
 <p>
-set / table = intersection<br>
+set * table = intersection<br>
+</p><hr>
+<p>
+set / table = symmetric difference<br>
 </p><hr>
 <p>
 set <= table = subset<br>

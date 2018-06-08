@@ -1,0 +1,1 @@
+This release rewrites the iterators in a more Lua-ish 5.1 style.
