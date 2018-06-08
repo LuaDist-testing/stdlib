@@ -2,7 +2,7 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-    <title>string: Module Index</title>
+    <title>Reference</title>
     <link rel="stylesheet" href="../luadoc.css" type="text/css" />
 	<!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/-->
 </head>
@@ -252,11 +252,6 @@
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#gsubs">gsubs</a>&nbsp;(s, sub, n)</td>
-	<td class="summary">Perform multiple calls to gsub.</td>
-	</tr>
-
-	<tr>
 	<td class="name" nowrap><a href="#ltrim">ltrim</a>&nbsp;(s, r)</td>
 	<td class="summary">Remove leading matter from a string.</td>
 	</tr>
@@ -435,49 +430,6 @@ Do multiple <code>find</code>s on a string.
 
 <h3>Return value:</h3>
 list of <code>{from, to; capt = {captures}}</code>
-
-
-
-</dd>
-
-
-
-
-<dt><a name="gsubs"></a><strong>gsubs</strong>&nbsp;(s, sub, n)</dt>
-<dd>
-Perform multiple calls to gsub.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  s: string to call gsub on
-	</li>
-	
-	<li>
-	  sub: <code>{pattern1=replacement1 ...}</code>
-	</li>
-	
-	<li>
-	  n: upper limit on replacements (default: infinite)
-	</li>
-	
-</ul>
-
-
-
-
-
-
-<h3>Return values:</h3>
-<ol>
-	
-	<li>result string
-	
-	<li>number of replacements made
-	
-</ol>
 
 
 

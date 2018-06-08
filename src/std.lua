@@ -9,7 +9,7 @@
 -- </ul>
 module ("std", package.seeall)
 
-version = "General Lua libraries / 28"
+version = "General Lua libraries / 29"
 
 for _, m in ipairs (require "modules") do
   require (m)

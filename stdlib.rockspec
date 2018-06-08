@@ -1,18 +1,9 @@
--- This file was automatically generated for the LuaDist project.
-
 package="stdlib"
-version="28-1"
--- LuaDist source
+version="29-1"
 source = {
-  tag = "28-1",
-  url = "git://github.com/LuaDist-testing/stdlib.git"
+  url = "git://github.com/rrthomas/lua-stdlib.git",
+  branch = "v29",
 }
--- Original source
--- source = {
---   url = "https://github.com/downloads/rrthomas/lua-stdlib/stdlib-28.zip",
---   md5 = "4856bad5777e5b21482ace6c6806eb2f",
---   dir = "stdlib-28"
--- }
 description = {
   summary = "General Lua libraries",
   detailed = [[
