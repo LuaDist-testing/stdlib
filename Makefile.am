@@ -2,7 +2,11 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SOURCES = $(wildcard $(srcdir)/src/*.lua)
+LUA_PATH ?= ;
+LUA_ENV = LUA_PATH="$(abs_srcdir)/src/?.lua;$(LUA_PATH)"
+
+SOURCES = $(filter-out $(srcdir)/src/std.lua, $(wildcard $(srcdir)/src/*.lua))
+SOURCES += $(srcdir)/src/std.lua
 dist_data_DATA = $(SOURCES)
 
 dist_doc_DATA =				\
@@ -14,12 +18,9 @@ modulesdir = $(docdir)/modules
 dist_modules_DATA = $(wildcard $(top_srcdir)/src/modules/*.html)
 
 EXTRA_DIST =				\
-	src/std.lua.in			\
-	$(PACKAGE).rockspec.in
+	src/std.lua.in
 
 DISTCLEANFILES = $(PACKAGE).rockspec
-
-ROCKSPEC = $(PACKAGE)-$(VERSION)-1.rockspec
 
 # In order to avoid regenerating std.lua at configure time, which
 # causes the documentation to be rebuilt and hence requires users to
@@ -29,10 +30,12 @@ src/std.lua: src/std.lua.in
 	./config.status --file=$@
 
 $(dist_doc_DATA): $(SOURCES)
-	cd src && luadoc *.lua
+	cd src && $(LUADOC) *.lua
 
-$(ROCKSPEC): $(PACKAGE).rockspec
-	cp $< $@
+rockspecs:
+	rm -f *.rockspec
+	$(LUA_ENV) $(LUA) mkrockspecs.lua $(PACKAGE) $(VERSION)
+	$(LUA_ENV) $(LUA) mkrockspecs.lua $(PACKAGE) git
 
 bootstrap:
 	autoreconf -i && \
@@ -44,20 +47,17 @@ tag-release:
 	git push && git push --tags
 
 check-in-release: distcheck
-	git checkout release && \
-	tar zxf $(PACKAGE)-$(VERSION).tar.gz && \
+	cd ../lua-stdlib-release && \
+	tar zxf ../lua-stdlib/$(PACKAGE)-$(VERSION).tar.gz && \
 	cp -af $(PACKAGE)-$(VERSION)/* . && \
+	rm -rf $(PACKAGE)-$(VERSION)/ && \
 	git add . && git ci -m "Release v$(VERSION)" && \
 	git tag -a -m "Full source release tag" release-v$(VERSION) && \
-	git push && git push --tags && \
-	git checkout master && \
-	rm -rf $(PACKAGE)-$(VERSION)/
+	git push && git push --tags
 
 # After check-in-release we need to bootstrap to get the build files back
-release: $(ROCKSPEC)
+release: rockspecs
 	$(MAKE) tag-release && \
 	$(MAKE) check-in-release && \
-	$(MAKE) bootstrap && \
-	$(MAKE) $(ROCKSPEC) && \
-	LUAROCKS_CONFIG=$(abs_srcdir)/luarocks-config.lua luarocks --tree=$(abs_srcdir)/luarocks build $(ROCKSPEC) && \
-	woger lua package=$(PACKAGE) package_name=$(PACKAGE_NAME) version=$(VERSION) description="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?.rockspec.in' $(LUA) -l$(PACKAGE) -e 'print (description.summary)'`" notes=release-notes-$(VERSION) home="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?.rockspec.in' $(LUA) -l$(PACKAGE) -e 'print (description.homepage)'`"
+	LUAROCKS_CONFIG=$(abs_srcdir)/luarocks-config.lua luarocks --tree=$(abs_srcdir)/luarocks build $(PACKAGE)-$(VERSION)-1.rockspec && \
+	woger lua package=$(PACKAGE) package_name=$(PACKAGE_NAME) version=$(VERSION) description="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?-git-1.rockspec' $(LUA) -l$(PACKAGE) -e 'print (description.summary)'`" home="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?-git-1.rockspec' $(LUA) -l$(PACKAGE) -e 'print (description.homepage)'`"
