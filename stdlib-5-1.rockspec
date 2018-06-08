@@ -1,15 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "4-2"
+version = "5-1"
 -- LuaDist source
 source = {
-  tag = "4-2",
+  tag = "5-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---    url = "http://luaforge.net/frs/download.php/2367/stdlib-4.tar.gz",
+--    url = "http://luaforge.net/frs/download.php/3209/stdlib-5.tar.gz",
+--    md5 = "910e6142851a791f943298c4ac6bdf23",
 --    dir = "stdlib"
 -- }
 description = {

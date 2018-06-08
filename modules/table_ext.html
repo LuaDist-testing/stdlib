@@ -6,6 +6,10 @@
 require "list" FIXME: allow require loops<br>
 </p><hr>
 <p>
+FIXME: use consistent name for result table: t_? (currently r and<br>
+u)<br>
+</p><hr>
+<p>
 <strong>sort:</strong> <em>Make table.sort return its result<br></em>
 &nbsp;&nbsp;<strong>t</strong>: table<br>
 &nbsp;&nbsp;<strong>c</strong>: comparator function<br>
@@ -60,16 +64,16 @@ dots<br>
 </p><hr>
 <p>
 <strong>invert:</strong> <em>Invert a table<br></em>
-&nbsp;&nbsp;<strong>t</strong>: table {i=v ...}<br>
+&nbsp;&nbsp;<strong>t</strong>: table {i=v...}<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>u</strong>: inverted table {v=i ...}<br>
+&nbsp;&nbsp;<strong>u</strong>: inverted table {v=i...}<br>
 </p><hr>
 <p>
-<strong>permute:</strong> <em>Permute some indices of a table<br></em>
-&nbsp;&nbsp;<strong>p</strong>: table {oldindex=newindex ...}<br>
-&nbsp;&nbsp;<strong>t</strong>: table to permute<br>
+<strong>rearrange:</strong> <em>Rearrange some indices of a table<br></em>
+&nbsp;&nbsp;<strong>m</strong>: table {oldindex=newindex...}<br>
+&nbsp;&nbsp;<strong>t</strong>: table to rearrange<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>u</strong>: permuted table<br>
+&nbsp;&nbsp;<strong>r</strong>: rearranged table<br>
 </p><hr>
 <p>
 <strong>process:</strong> <em>map a function over a table using an iterator<br></em>

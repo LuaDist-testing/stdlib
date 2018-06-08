@@ -5,29 +5,6 @@ module ("io", package.seeall)
 require "base"
 
 
--- FIXME: Make this the __len metamethod
--- @func length: Find the length of a file
---   @param f: file name
--- @returns
---   @param len: length of file, or nil on error
-function length (f)
-  local h, len
-  h = io.open (f, "rb")
-  len = h:seek ("end")
-  h:close ()
-  return len
-end
--- FIXME: Use this POSIX implementation
---require "posix"
---function length (f)
---  local s = posix.stat (f)
---   if s then
---     return s.size
---   else
---     return nil
---   end
--- end
-
 -- @func readLines: Read a file into a list of lines and close it
 --   @param [h]: file handle or name [io.input ()]
 -- @returns
@@ -108,6 +85,58 @@ end
 --   @param name_: file name with new suffix
 function addSuffix (suff, name)
   return changeSuffix (suff, suff, name)
+end
+
+-- @func pathSplit: split a path into components
+-- Multiple separators are compressed into one; the current directory
+-- becomes an empty list, while the root directory becomes {"/"}.
+-- Trailing separators are ignored.
+--   @param path: path
+-- @returns
+--   @param: path1, ..., pathn: path components
+function pathSplit (path)
+  -- Compress multiple separators
+  path = string.gsub (path, "//+", "/")
+  -- Suppress trailing /
+  path = string.gsub (path, "/$", "")
+  -- Current dir is empty list
+  if path == "." then
+    path = ""
+  elseif path == "/" then
+    return {"/"}
+  end
+  return string.split ("/", path)
+  -- string.split does the right thing when path is "/"
+end
+
+-- @func pathConcat: concatenate path components into a path
+-- Empty components are ignored; an empty list is taken to be the
+-- current directory
+--   @param: path1, ..., pathn: path components
+-- @returns
+--   @param path: path
+function pathConcat (...)
+  local arg = {...}
+  local rooted = false
+  if #arg >= 1 then
+    rooted = string.sub (arg[1], 1, 1) == "/"
+  end
+  -- Empty list is current dir
+  local path = string.join ("/", arg)
+  -- Compress multiple separators
+  path = string.gsub (path, "//+", "/")
+  -- Suppress trailing /
+  path = string.gsub (path, "/$", "")
+  -- Suppress leading /
+  path = string.gsub (path, "^/", "")
+  -- A non-empty path with only empty components is the current directory
+  if path == "" then
+    return "."
+  end
+  if rooted then
+    path = "/" .. path
+  end
+  return path
 end
 
 -- @func shell: Perform a shell command and return its output

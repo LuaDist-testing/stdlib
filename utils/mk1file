@@ -3,6 +3,7 @@
 # Make a single file that can be used with dofile
 
 cat <<EOF
+require "rex_pcre"
 function require (f)
   package.loaded[f] = true
 end

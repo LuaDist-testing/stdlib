@@ -2,9 +2,6 @@
 
 module ("set", package.seeall)
 
-require "object"
-require "table_ext"
-
 
 -- Primitive methods (know about representation)
 

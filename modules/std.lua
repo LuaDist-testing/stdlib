@@ -21,7 +21,7 @@ require "object"
 require "lcs"
 require "string_ext"
 require "xml"
-require "rex" -- external dependency
+require "rex"
 require "math_ext"
 require "io_ext"
 require "getopt"

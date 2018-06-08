@@ -4,6 +4,12 @@
 Parser generator<br>
 </p><hr>
 <p>
+FIXME: Give lexemes as an extra argument to Parser?<br>
+FIXME: Rename second argument to parse method to "tokens"?<br>
+FIXME: Make start_token an optional argument to parse? (swap with<br>
+&nbsp;&nbsp;token list) and have it default to the first non-terminal?<br>
+</p><hr>
+<p>
 A parser is created by<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;p = Parser {grammar}<br>
@@ -23,10 +29,10 @@ value is 1).<br>
 The output of the parser is a tree, each of whose<br>
 nodes is of the form:<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;{ty = symbol, node_1 = tree_1, node_2 = tree_2, ... [list]}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ty = symbol, node_1 = tree_1, node_2 = tree_2, ... [, list]}<br>
 <br>
 where each node_i is a symbolic name, and list is the list of<br>
-subtrees returned if the corresponding token was a list token.<br>
+trees returned if the corresponding token was a list token.<br>
 <br>
 A grammar is a table of rules of the form<br>
 <br>
@@ -56,7 +62,7 @@ Each token may be<br>
 &nbsp;&nbsp;&nbsp;&nbsp; * a list is indicated by the suffix "_list", and may be<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; followed by "_<separator-symbol>" (default is no separator)<br>
 &nbsp;&nbsp;* a lexeme class<br>
-&nbsp;&nbsp;* something else, which is taken as a literal string to match<br>
+&nbsp;&nbsp;* a string to match literally<br>
 <br>
 The parse tree for a literal string or lexeme class is the string<br>
 that was matched. The parse tree for a non-terminal is a table of<br>
@@ -85,7 +91,7 @@ An abstract syntax rule is of the form<br>
 where i_1, i_2, ... are numbers. This results in a parse tree of<br>
 the form<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;{ty = "name", subtree_i_1, subtree_i_2, ...}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ty = "name"; tree_i_1, tree_i_2, ...}<br>
 <br>
 If a production has no abstract syntax rule, the result is the<br>
 parse node for the current node.<br>

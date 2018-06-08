@@ -178,7 +178,6 @@ function transpose (ls)
     for j = 1, len do
       ms[i][j] = ls[j][i]
     end
-    ms[i].n = #ms[i]
   end
   return ms
 end
@@ -357,3 +356,6 @@ metatable = {
 function new (l)
   return setmetatable (l, metatable)
 end
+
+-- Function forms of operators
+_G.op[".."] = list.concat

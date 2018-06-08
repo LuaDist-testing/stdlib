@@ -4,6 +4,9 @@ module ("table", package.seeall)
 
 --require "list" FIXME: allow require loops
 
+-- FIXME: use consistent name for result table: t_? (currently r and
+-- u)
+
 
 -- @func sort: Make table.sort return its result
 --   @param t: table
@@ -92,9 +95,9 @@ function values (t)
 end
 
 -- @func invert: Invert a table
---   @param t: table {i=v ...}
+--   @param t: table {i=v...}
 -- @returns
---   @param u: inverted table {v=i ...}
+--   @param u: inverted table {v=i...}
 function invert (t)
   local u = {}
   for i, v in pairs (t) do
@@ -103,21 +106,18 @@ function invert (t)
   return u
 end
 
--- @func permute: Permute some indices of a table
---   @param p: table {oldindex=newindex ...}
---   @param t: table to permute
+-- @func rearrange: Rearrange some indices of a table
+--   @param m: table {oldindex=newindex...}
+--   @param t: table to rearrange
 -- @returns
---   @param u: permuted table
-function permute (p, t)
-  local u = {}
-  for i, v in pairs (t) do
-    if p[i] ~= nil then
-      u[p[i]] = v
-    else
-      u[i] = v
-    end
+--   @param r: rearranged table
+function rearrange (m, t)
+  local r = clone (t)
+  for i, v in pairs (m) do
+    r[v] = t[i]
+    r[i] = nil
   end
-  return u
+  return r
 end
 
 -- @func process: map a function over a table using an iterator
@@ -197,8 +197,8 @@ end
 --   @param t: table
 -- @returns
 --   @param m: result table containing elements e of t for which p (e)
-function filter (f, t)
-  return process (pairs, filterItem (f), {}, t)
+function filter (p, t)
+  return process (pairs, filterItem (p), {}, t)
 end
 
 -- @func clone: Make a shallow copy of a table, including any

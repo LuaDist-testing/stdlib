@@ -3,25 +3,6 @@
 I/O<br>
 </p><hr>
 <p>
-FIXME: Make this the __len metamethod<br>
-<strong>length:</strong> <em>Find the length of a file<br></em>
-&nbsp;&nbsp;<strong>f</strong>: file name<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>len</strong>: length of file, or nil on error<br>
-</p><hr>
-<p>
-FIXME: Use this POSIX implementation<br>
-require "posix"<br>
-function length (f)<br>
- local s = posix.stat (f)<br>
-&nbsp;&nbsp;if s then<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return s.size<br>
-&nbsp;&nbsp;else<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return nil<br>
-&nbsp;&nbsp;end<br>
-end<br>
-</p><hr>
-<p>
 <strong>readLines:</strong> <em>Read a file into a list of lines and close it<br></em>
 &nbsp;&nbsp;<strong>[h]</strong>: file handle or name [io.input ()]<br>
 <strong>returns</strong><br>
@@ -58,6 +39,23 @@ end<br>
 &nbsp;&nbsp;<strong>name</strong>: file name to change<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>name_</strong>: file name with new suffix<br>
+</p><hr>
+<p>
+<strong>pathSplit:</strong> <em>split a path into components<br></em>
+Multiple separators are compressed into one; the current directory<br>
+becomes an empty list, while the root directory becomes {"/"}.<br>
+Trailing separators are ignored.<br>
+&nbsp;&nbsp;<strong>path</strong>: path<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;@param: path1, ..., pathn: path components<br>
+</p><hr>
+<p>
+<strong>pathConcat:</strong> <em>concatenate path components into a path<br></em>
+Empty components are ignored; an empty list is taken to be the<br>
+current directory<br>
+&nbsp;&nbsp;@param: path1, ..., pathn: path components<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>path</strong>: path<br>
 </p><hr>
 <p>
 <strong>shell:</strong> <em>Perform a shell command and return its output<br></em>

@@ -8,7 +8,7 @@ require "table_ext"
 -- Usage:
 
 -- Create an object/class:
---   object/class = parent {value, ...; field = value ...}
+--   object/class = prototype {value, ...; field = value ...}
 --   An object's metatable is itself.
 --   In the initialiser, unnamed values are assigned to the fields
 --   given by _init (assuming the default _clone).
@@ -16,7 +16,7 @@ require "table_ext"
 
 -- Access an object field: object.field
 -- Call an object method: object:method (...)
--- Call a class method: class.method (self, ...)
+-- Call a class method: Class.method (self, ...)
 
 -- Add a field: object.field = x
 -- Add a method: function object:method (...) ... end
@@ -38,7 +38,7 @@ setmetatable (Object, Object)
 -- @returns
 --   @param object: new object
 function Object:_clone (values)
-  local object = table.merge (self, table.permute (self._init, values))
+  local object = table.merge (self, table.rearrange (self._init, values))
   return setmetatable (object, object)
 end
   
