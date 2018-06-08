@@ -3,6 +3,30 @@
 <h1>list<br></h1>
 </p><hr>
 <p>
+<strong>elems:</strong> <em>An iterator over the elements of a list<br></em>
+&nbsp;&nbsp;<strong>l</strong>: list to iterate over<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>f</strong>: iterator function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>l</strong>: list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>n</strong>: index<br>
+&nbsp;&nbsp;<strong>returns</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>v</strong>: value (l[n - 1])<br>
+&nbsp;&nbsp;<strong>l</strong>: the list, as above<br>
+&nbsp;&nbsp;@param 0<br>
+</p><hr>
+<p>
+<strong>relems:</strong> <em>An iterator over the elements of a list, in reverse<br></em>
+&nbsp;&nbsp;<strong>l</strong>: list to iterate over<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>f</strong>: iterator function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>l</strong>: list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>n</strong>: index<br>
+&nbsp;&nbsp;<strong>returns</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>v</strong>: value (l[n - 1))<br>
+&nbsp;&nbsp;<strong>l</strong>: the list, as above<br>
+&nbsp;&nbsp;<strong>n</strong>: #l + 1<br>
+</p><hr>
+<p>
 <strong>map:</strong> <em>Map a function over a list<br></em>
 &nbsp;&nbsp;<strong>f</strong>: function<br>
 &nbsp;&nbsp;<strong>l</strong>: list<br>
@@ -16,12 +40,6 @@
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>m</strong>: result list {f (unpack (ls[1]))), ...,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;f (unpack (ls[#ls]))}<br>
-</p><hr>
-<p>
-<strong>filterItem:</strong> <em>filter primitive for table.process<br></em>
-&nbsp;&nbsp;@f: predicate<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;@g: function to pass to process to filter a single item<br>
 </p><hr>
 <p>
 <strong>filter:</strong> <em>Filter a list according to a predicate<br></em>
@@ -168,7 +186,7 @@ field<br>
 &nbsp;&nbsp;<strong>f</strong>: field<br>
 &nbsp;&nbsp;<strong>l</strong>: list of tables {t1, ..., tn}<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>ind</strong>: index {t1[f]=1, ..., tn[f]=n}<br>
+&nbsp;&nbsp;<strong>m</strong>: index {t1[f]=1, ..., tn[f]=n}<br>
 </p><hr>
 <p>
 <strong>indexValue:</strong> <em>Copy a list of tables, indexed on a given<br></em>

@@ -6,13 +6,55 @@ require "base"
 require "table_ext"
 
 
+-- @func elems: An iterator over the elements of a list
+--   @param l: list to iterate over
+-- @returns
+--   @param f: iterator function
+--     @param l: list
+--     @param n: index
+--   @returns
+--     @param v: value (l[n - 1])
+--   @param l: the list, as above
+--   @param 0
+function elems (l)
+  local n = 0
+  return function (l)
+           n = n + 1
+           if n <= #l then
+             return l[n]
+           end
+         end,
+  l, true
+end
+
+-- @func relems: An iterator over the elements of a list, in reverse
+--   @param l: list to iterate over
+-- @returns
+--   @param f: iterator function
+--     @param l: list
+--     @param n: index
+--   @returns
+--     @param v: value (l[n - 1))
+--   @param l: the list, as above
+--   @param n: #l + 1
+function relems (l)
+  local n = #l + 1
+  return function (l)
+           n = n - 1
+           if n > 0 then
+             return l[n]
+           end
+         end,
+  l, true
+end
+
 -- @func map: Map a function over a list
 --   @param f: function
 --   @param l: list
 -- @returns
 --   @param m: result list {f (l[1]), ..., f (l[#l])}
 function map (f, l)
-  return table.process (ipairs, table.mapItem (f), {}, l)
+  return _G.map (f, elems, l)
 end
 
 -- @func mapWith: Map a function over a list of lists
@@ -22,20 +64,7 @@ end
 --   @param m: result list {f (unpack (ls[1]))), ...,
 --     f (unpack (ls[#ls]))}
 function mapWith (f, l)
-  return map (compose (f, unpack), l)
-end
-
--- @func filterItem: filter primitive for table.process
---   @f: predicate
--- @returns
---   @g: function to pass to process to filter a single item
-function filterItem (p)
-  return function (a, i, v)
-           if p (v) then
-             table.insert (a, v)
-           end
-           return a
-         end
+  return _G.map (compose (f, unpack), elems, l)
 end
 
 -- @func filter: Filter a list according to a predicate
@@ -48,7 +77,7 @@ end
 --   @param m: result list containing elements e of l for which p (e)
 --     is true
 function filter (p, l)
-  return table.process (ipairs, filterItem, {}, l)
+  return _G.filter (p, elems, l)
 end
 
 -- @func slice: Slice a list
@@ -91,7 +120,7 @@ end
 -- @returns
 --   @param r: result
 function foldl (f, e, l)
-  return table.process (ipairs, table.foldlItem (f), e, l)
+  return _G.foldl (f, elems, e, l)
 end
 
 -- @func foldr: Fold a binary function through a list right
@@ -102,7 +131,7 @@ end
 -- @returns
 --   @param r: result
 function foldr (f, e, l)
-  return table.process (ripairs, table.foldrItem (f), e, l)
+  return _G.foldr (f, relems, e, l)
 end
 
 -- @func cons: Prepend an item to a list
@@ -299,17 +328,16 @@ end
 --   @param f: field
 --   @param l: list of tables {t1, ..., tn}
 -- @returns
---   @param ind: index {t1[f]=1, ..., tn[f]=n}
+--   @param m: index {t1[f]=1, ..., tn[f]=n}
 function indexKey (f, l)
-  return table.process (ipairs,
-                        function (a, i, v)
-                          local k = v[f]
-                          if k then
-                            a[k] = i
-                          end
-                          return a
-                        end,
-                        {}, l)
+  local m = {}
+  for i, v in ipairs (l) do
+    local k = v[f]
+    if k then
+      m[k] = i
+    end
+  end
+  return m
 end
 
 -- @func indexValue: Copy a list of tables, indexed on a given
@@ -319,15 +347,14 @@ end
 -- @returns
 --   @param m: index {t1[f]=t1, ..., tn[f]=tn}
 function indexValue (f, l)
-  return table.process (ipairs,
-                        function (a, _, v)
-                          local k = v[f]
-                          if k then
-                            a[k] = v
-                          end
-                          return a
-                        end,
-                        {}, l)
+  local m = {}
+  for i, v in ipairs (l) do
+    local k = v[f]
+    if k then
+      m[k] = v
+    end
+  end
+  return m
 end
 permuteOn = indexValue
 

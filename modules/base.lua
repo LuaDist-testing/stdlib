@@ -295,19 +295,78 @@ end
 --     @param n: index
 --   @returns
 --     @param i: index (n - 1)
---     @param v: value (t[n - 1))
+--     @param v: value (t[n - 1])
 --   @param t: the table, as above
 --   @param n: #t + 1
 function _G.ripairs (t)
   return function (t, n)
            n = n - 1
-           if n == 0 then
-             n = nil
-           else
+           if n > 0 then
              return n, t[n]
            end
          end,
   t, #t + 1
+end
+
+-- @func collect: collect the results of an iterator
+--   @param i: iterator
+--   @param ...: arguments
+-- @returns
+--   @t: results of running the iterator on its arguments
+function _G.collect (i, ...)
+  local t = {}
+  for e in i (...) do
+    table.insert (t, e)
+  end
+  return t
+end
+
+-- @func map: Map a function over an iterator
+--   @param f: function
+--   @param i: iterator
+--   @param ...: iterator's arguments
+-- @returns
+--   @param t: result table
+function _G.map (f, i, ...)
+  local t = {}
+  for e in i (...) do
+    local r = f (e)
+    if r then
+      table.insert (t, r)
+    end
+  end
+  return t
+end
+
+-- @func filter: Filter an iterator with a predicate
+--   @param p: predicate
+--   @param i: iterator
+--   @param ...:
+-- @returns
+--   @param t: result table containing elements e for which p (e)
+function _G.filter (p, i, ...)
+  local t = {}
+  for e in i (...) do
+    if p (e) then
+      table.insert (t, e)
+    end
+  end
+  return t
+end
+
+-- @func fold: Fold a function into an iterator leftwards
+--   @param f: function
+--   @param d: element to place in left-most position
+--   @param i: iterator
+--   @param ...:
+-- @returns
+--   @param r: result
+function _G.foldl (f, i, ...)
+  local r = d
+  for e in i (...) do
+    r = f (r, e)
+  end
+  return r
 end
 
 -- @func treeIter: tree iterator

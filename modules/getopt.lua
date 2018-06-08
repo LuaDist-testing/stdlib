@@ -13,6 +13,8 @@ require "io_ext"
 -- surely Option shouldn't be in the root namespace?
 -- TODO: Wrap all messages; do all wrapping in processArgs, not
 -- usageInfo; use sdoc-like library (see string.format todos)
+-- TODO: Don't require name to be repeated in banner.
+-- TODO: Store version separately (construct banner?).
 
 
 -- Usage:

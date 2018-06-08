@@ -76,58 +76,6 @@ dots<br>
 &nbsp;&nbsp;<strong>r</strong>: rearranged table<br>
 </p><hr>
 <p>
-<strong>process:</strong> <em>map a function over a table using an iterator<br></em>
-&nbsp;&nbsp;<strong>it</strong>: iterator<br>
-&nbsp;&nbsp;<strong>f</strong>: function<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>a</strong>: accumulator<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>i</strong>: index<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>v</strong>: value<br>
-&nbsp;&nbsp;<strong>returns</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>b</strong>: updated accumulator<br>
-&nbsp;&nbsp;<strong>a</strong>: initial value of the accumulator<br>
-&nbsp;&nbsp;<strong>t</strong>: table to iterate over<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>a</strong>: final value of the accumulator<br>
-</p><hr>
-<p>
-<strong>mapItem:</strong> <em>map primitive for table.process<br></em>
-&nbsp;&nbsp;@f: function<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;@g: function to pass to process to map a single item<br>
-</p><hr>
-<p>
-<strong>filterItem:</strong> <em>filter primitive for table.process<br></em>
-&nbsp;&nbsp;@f: predicate<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;@g: function to pass to process to filter a single item<br>
-</p><hr>
-<p>
-<strong>foldlItem:</strong> <em>foldl primitive for table.process<br></em>
-&nbsp;&nbsp;@f: function<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;@g: function to pass to process to foldl a single item<br>
-</p><hr>
-<p>
-<strong>foldrItem:</strong> <em>foldr primitive for table.process<br></em>
-&nbsp;&nbsp;@f: function<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;@g: function to pass to process to foldr a single item<br>
-</p><hr>
-<p>
-<strong>map:</strong> <em>Map a function over a table<br></em>
-&nbsp;&nbsp;<strong>f</strong>: function<br>
-&nbsp;&nbsp;<strong>t</strong>: table<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>m</strong>: result table {f (t[i1])...}<br>
-</p><hr>
-<p>
-<strong>filter:</strong> <em>Filter a table with a predicate<br></em>
-&nbsp;&nbsp;<strong>p</strong>: predicate<br>
-&nbsp;&nbsp;<strong>t</strong>: table<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>m</strong>: result table containing elements e of t for which p (e)<br>
-</p><hr>
-<p>
 <strong>clone:</strong> <em>Make a shallow copy of a table, including any<br></em>
 metatable<br>
 &nbsp;&nbsp;<strong>t</strong>: table<br>

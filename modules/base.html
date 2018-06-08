@@ -139,9 +139,41 @@ TODO: Make it work for recursive tables<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<strong>n</strong>: index<br>
 &nbsp;&nbsp;<strong>returns</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<strong>i</strong>: index (n - 1)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>v</strong>: value (t[n - 1))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>v</strong>: value (t[n - 1])<br>
 &nbsp;&nbsp;<strong>t</strong>: the table, as above<br>
 &nbsp;&nbsp;<strong>n</strong>: #t + 1<br>
+</p><hr>
+<p>
+<strong>collect:</strong> <em>collect the results of an iterator<br></em>
+&nbsp;&nbsp;<strong>i</strong>: iterator<br>
+&nbsp;&nbsp;<strong>...</strong>: arguments<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;@t: results of running the iterator on its arguments<br>
+</p><hr>
+<p>
+<strong>map:</strong> <em>Map a function over an iterator<br></em>
+&nbsp;&nbsp;<strong>f</strong>: function<br>
+&nbsp;&nbsp;<strong>i</strong>: iterator<br>
+&nbsp;&nbsp;<strong>...</strong>: iterator's arguments<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>t</strong>: result table<br>
+</p><hr>
+<p>
+<strong>filter:</strong> <em>Filter an iterator with a predicate<br></em>
+&nbsp;&nbsp;<strong>p</strong>: predicate<br>
+&nbsp;&nbsp;<strong>i</strong>: iterator<br>
+&nbsp;&nbsp;<strong>...</strong>:<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>t</strong>: result table containing elements e for which p (e)<br>
+</p><hr>
+<p>
+<strong>fold:</strong> <em>Fold a function into an iterator leftwards<br></em>
+&nbsp;&nbsp;<strong>f</strong>: function<br>
+&nbsp;&nbsp;<strong>d</strong>: element to place in left-most position<br>
+&nbsp;&nbsp;<strong>i</strong>: iterator<br>
+&nbsp;&nbsp;<strong>...</strong>:<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>r</strong>: result<br>
 </p><hr>
 <p>
 <strong>treeIter:</strong> <em>tree iterator<br></em>

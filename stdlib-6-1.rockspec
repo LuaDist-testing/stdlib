@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "5-1"
+version = "6-1"
 -- LuaDist source
 source = {
-  tag = "5-1",
+  tag = "6-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---    url = "http://luaforge.net/frs/download.php/3209/stdlib-5.tar.gz",
---    md5 = "910e6142851a791f943298c4ac6bdf23",
+--    url = "http://luaforge.net/frs/download.php/3584/stdlib-6.tar.gz",
+--    md5 = "c36637f0828112d2f70f2f1f7fb109ce",
 --    dir = "stdlib"
 -- }
 description = {
@@ -26,7 +26,7 @@ description = {
 }
 dependencies = {
    "lua >= 5.1",
-   "lrexlib-pcre >= 2.2.2"
+   "lrexlib-pcre >= 2.3.0"
 }
 build = {
    type = "none",
