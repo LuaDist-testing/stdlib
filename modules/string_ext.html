@@ -8,12 +8,12 @@ TODO: Pretty printing<br>
 &nbsp;&nbsp;(Use in getopt)<br>
 <br>
 &nbsp;&nbsp;John Hughes's and Simon Peyton Jones's Pretty Printer Combinators<br>
-&nbsp;&nbsp;<br>
+<br>
 &nbsp;&nbsp;Based on The Design of a Pretty-printing Library in Advanced<br>
 &nbsp;&nbsp;Functional Programming, Johan Jeuring and Erik Meijer (eds), LNCS 925<br>
 &nbsp;&nbsp;http://www.cs.chalmers.se/~rjmh/Papers/pretty.ps<br>
 &nbsp;&nbsp;Heavily modified by Simon Peyton Jones, Dec 96<br>
-&nbsp;&nbsp;<br>
+<br>
 &nbsp;&nbsp;Haskell types:<br>
 &nbsp;&nbsp;data Doc&nbsp;&nbsp;&nbsp;&nbsp; list of lines<br>
 &nbsp;&nbsp;quote :: Char -> Char -> Doc -> Doc&nbsp;&nbsp;&nbsp;&nbsp;Wrap document in ...<br>
@@ -32,9 +32,11 @@ TODO: Pretty printing<br>
 <p>
 <strong>__index:</strong> <em>Give strings a subscription operator<br></em>
 &nbsp;&nbsp;<strong>s</strong>: string<br>
-&nbsp;&nbsp;<strong>n</strong>: index<br>
+&nbsp;&nbsp;<strong>i</strong>: index<br>
 <strong>returns</strong><br>
-&nbsp;&nbsp;<strong>s_</strong>: string.sub (s, n, n)<br>
+&nbsp;&nbsp;<strong>s_</strong>: string.sub (s, i, i) if i is a number,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or falls back to any previous metamethod (by default, string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;methods)<br>
 </p><hr>
 <p>
 <strong>__append:</strong> <em>Give strings an append metamethod<br></em>
@@ -138,38 +140,31 @@ The number is always written to 3 s.f.<br>
 &nbsp;&nbsp;<strong>r</strong>: number of replacements made<br>
 </p><hr>
 <p>
+FIXME: Consider Perl and Python versions.<br>
 <strong>split:</strong> <em>Split a string at a given separator<br></em>
-&nbsp;&nbsp;<strong>sep</strong>: separator regex<br>
 &nbsp;&nbsp;<strong>s</strong>: string to split<br>
+&nbsp;&nbsp;<strong>sep</strong>: separator regex<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>l</strong>: list of strings<br>
 </p><hr>
 <p>
-<strong>join:</strong> <em>Join a list of strings with the given separator<br></em>
-&nbsp;&nbsp;<strong>sep</strong>: separator<br>
-&nbsp;&nbsp;<strong>l</strong>: list of strings to join<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>s</strong>: string<br>
-</p><hr>
-<p>
 <strong>ltrim:</strong> <em>Remove leading matter from a string<br></em>
-&nbsp;&nbsp;<strong>[r]</strong>: leading regex ["%s+"]<br>
 &nbsp;&nbsp;<strong>s</strong>: string<br>
+&nbsp;&nbsp;<strong>[r]</strong>: leading regex ["%s+"]<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>s_</strong>: string without leading r<br>
 </p><hr>
 <p>
 <strong>rtrim:</strong> <em>Remove trailing matter from a string<br></em>
-&nbsp;&nbsp;<strong>[r]</strong>: trailing regex ["%s+"]<br>
 &nbsp;&nbsp;<strong>s</strong>: string<br>
+&nbsp;&nbsp;<strong>[r]</strong>: trailing regex ["%s+"]<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>s_</strong>: string without trailing r<br>
 </p><hr>
 <p>
-<strong>trim:</strong> <em>Remove leading and trailing matter from a<br></em>
-string<br>
-&nbsp;&nbsp;<strong>[r]</strong>: leading/trailing regex ["%s+"]<br>
+<strong>trim:</strong> <em>Remove leading and trailing matter from a string<br></em>
 &nbsp;&nbsp;<strong>s</strong>: string<br>
+&nbsp;&nbsp;<strong>[r]</strong>: leading/trailing regex ["%s+"]<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>s_</strong>: string without leading/trailing r<br>
 </p><hr>

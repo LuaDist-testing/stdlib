@@ -17,28 +17,6 @@ u)<br>
 &nbsp;&nbsp;<strong>t</strong>: sorted table<br>
 </p><hr>
 <p>
-<strong>subscript:</strong> <em>Expose [] as a function<br></em>
-&nbsp;&nbsp;<strong>t</strong>: table<br>
-&nbsp;&nbsp;<strong>s</strong>: subscript<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>v</strong>: t[s]<br>
-</p><hr>
-<p>
-<strong>lookup:</strong> <em>Do a late-bound table lookup<br></em>
-&nbsp;&nbsp;<strong>t</strong>: table to look up in<br>
-&nbsp;&nbsp;<strong>l</strong>: list of indices {l1 ... ln}<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>u</strong>: t[l1]...[ln]<br>
-</p><hr>
-<p>
-<strong>pathSubscript:</strong> <em>Subscript a table with a string containing<br></em>
-dots<br>
-&nbsp;&nbsp;<strong>t</strong>: table<br>
-&nbsp;&nbsp;<strong>s</strong>: subscript of the form s1.s2. ... .sn<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>v</strong>: t.s1.s2. ... .sn<br>
-</p><hr>
-<p>
 <strong>empty:</strong> <em>Say whether table is empty<br></em>
 &nbsp;&nbsp;<strong>t</strong>: table<br>
 <strong>returns</strong><br>
@@ -77,15 +55,9 @@ dots<br>
 </p><hr>
 <p>
 <strong>clone:</strong> <em>Make a shallow copy of a table, including any<br></em>
-metatable<br>
+metatable (for a deep copy, use tree.clone)<br>
 &nbsp;&nbsp;<strong>t</strong>: table<br>
-<strong>returns</strong><br>
-&nbsp;&nbsp;<strong>u</strong>: copy of table<br>
-</p><hr>
-<p>
-<strong>deepclone:</strong> <em>Make a deep copy of a table, including any<br></em>
- metatable<br>
-&nbsp;&nbsp;<strong>t</strong>: table<br>
+&nbsp;&nbsp;<strong>nometa</strong>: if non-nil don't copy metatable<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>u</strong>: copy of table<br>
 </p><hr>
@@ -98,8 +70,8 @@ the returned table is that of t<br>
 &nbsp;&nbsp;<strong>r</strong>: the merged table<br>
 </p><hr>
 <p>
-<strong>newDefault:</strong> <em>Make a table with a default value<br></em>
-&nbsp;&nbsp;<strong>x</strong>: default value<br>
+<strong>new:</strong> <em>Make a table with a default entry value<br></em>
+&nbsp;&nbsp;<strong>[x]</strong>: default entry value [nil]<br>
 &nbsp;&nbsp;<strong>[t]</strong>: initial table [{}]<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>u</strong>: table for which u[i] is x if u[i] does not exist<br>

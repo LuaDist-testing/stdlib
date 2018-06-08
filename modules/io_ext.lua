@@ -28,117 +28,40 @@ end
 --   @param ...: values to write (as for write)
 function writeLine (h, ...)
   if io.type (h) ~= "file" then
-    table.insert (arg, 1, h)
+    io.write (h, "\n")
     h = io.output ()
   end
-  for _, v in ipairs (arg) do
+  for _, v in ipairs ({...}) do
     h:write (v, "\n")
   end
 end
 
--- @func basename: POSIX basename
---   @param path
--- @returns
---   @param base: base name
-function basename (path)
-  if path == "/" then
-    return "/"
-  elseif path == "" then
-    return "."
-  end
-  path = string.gsub (path, "/$", "")
-  local _, _, base = string.find (path, "([^/]*)$")
-  return base
-end
-
--- @func dirname: POSIX dirname
---   @param path
--- @returns
---   @param dir: directory component
-function dirname (path)
-  if path == "/" then
-    return "/"
-  end
-  path = string.gsub (path, "/$", "")
-  local _, _, dir = string.find (path, "^(/?.-)/?[^/]*$")
-  if dir == "" then
-    dir = "."
-  end
-  return dir
-end
-
--- @func changeSuffix: Change the suffix of a filename
---   @param from: suffix to change (".-" for any suffix)
---   @param to: suffix to replace with
---   @param name: file name to change
--- @returns
---   @param name_: file name with new suffix
-function changeSuffix (from, to, name)
-  return dirname (name) .. "/" ..
-    string.gsub (basename (name), "%." .. from .. "$", "") .. "." .. to
-end
-
--- @func addSuffix: Add a suffix to a filename if not already present
---   @param suff: suffix to add
---   @param name: file name to change
--- @returns
---   @param name_: file name with new suffix
-function addSuffix (suff, name)
-  return changeSuffix (suff, suff, name)
-end
-
--- @func pathSplit: split a path into components
--- Multiple separators are compressed into one; the current directory
--- becomes an empty list, while the root directory becomes {"/"}.
--- Trailing separators are ignored.
+-- @func splitdir: split a directory path into components
+-- Empty components are retained: the root directory becomes {"", ""}.
+-- The same as Perl's File::Spec::splitdir
 --   @param path: path
 -- @returns
 --   @param: path1, ..., pathn: path components
--- FIXME: Compare with Perl's File::Spec::splitdir
-function pathSplit (path)
-  -- Compress multiple separators
-  path = string.gsub (path, "//+", "/")
-  -- Suppress trailing /
-  path = string.gsub (path, "/$", "")
-  -- Current dir is empty list
-  if path == "." then
-    path = ""
-  elseif path == "/" then
-    return {"/"}
-  end
+function splitdir (path)
   return string.split ("/", path)
-  -- string.split does the right thing when path is "/"
 end
 
--- @func pathConcat: concatenate path components into a path
--- Empty components are ignored; an empty list is taken to be the
--- current directory
+-- @func catfile: concatenate directories into a path
+-- The same as Perl's File::Spec::catfile
 --   @param: path1, ..., pathn: path components
 -- @returns
 --   @param path: path
--- FIXME: Compare with Perl's File::Spec::catfile
-function pathConcat (...)
-  local arg = {...}
-  local rooted = false
-  if #arg >= 1 then
-    rooted = string.sub (arg[1], 1, 1) == "/"
-  end
-  -- Empty list is current dir
-  local path = string.join ("/", arg)
-  -- Compress multiple separators
-  path = string.gsub (path, "//+", "/")
-  -- Suppress trailing /
-  path = string.gsub (path, "/$", "")
-  -- Suppress leading /
-  path = string.gsub (path, "^/", "")
-  -- A non-empty path with only empty components is the current directory
-  if path == "" then
-    return "."
-  end
-  if rooted then
-    path = "/" .. path
-  end
-  return path
+function catfile (...)
+  return table.concat ({...}, "/")
+end
+
+-- @func catdir: concatenate directories into a path
+-- The same as Perl's File::Spec::catdir
+--   @param: path1, ..., pathn: path components
+-- @returns
+--   @param path: path
+function catdir (...)
+  return (string.gsub (catfile (...), "^$", "/"))
 end
 
 -- @func shell: Perform a shell command and return its output
@@ -162,6 +85,7 @@ end
 --     @param name: the name of the file being read
 --     @param i: the number of the argument
 function processFiles (f)
+  -- N.B. "arg" below refers to the global array of command-line args
   if #arg == 0 then
     table.insert (arg, "-")
   end

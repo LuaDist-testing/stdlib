@@ -4,6 +4,7 @@
 module ("getopt", package.seeall)
 
 require "base"
+require "list"
 require "string_ext"
 require "object"
 require "io_ext"
@@ -238,6 +239,7 @@ end
 -- @func processArgs: simple getOpt wrapper
 -- adds -version/-v and -help/-h/-? automatically; stops program
 -- if there was an error or -help was used
+_G.options = nil
 function processArgs ()
   local totArgs = #arg
   options = Options (list.concat (options or {},
@@ -267,7 +269,7 @@ end
 
 -- A small and hopefully enlightening example:
 if type (_DEBUG) == "table" and _DEBUG.std then
-  
+
   function out (o)
     return o or io.stdout
   end

@@ -19,43 +19,12 @@ function sort (t, c)
   return t
 end
 
--- @func subscript: Expose [] as a function
---   @param t: table
---   @param s: subscript
--- @returns
---   @param v: t[s]
-function subscript (t, s)
-  return t[s]
-end
-
--- @func lookup: Do a late-bound table lookup
---   @param t: table to look up in
---   @param l: list of indices {l1 ... ln}
--- @returns
---   @param u: t[l1]...[ln]
-function lookup (t, l)
-  return list.foldl (subscript, t, l)
-end
-
--- @func pathSubscript: Subscript a table with a string containing
--- dots
---   @param t: table
---   @param s: subscript of the form s1.s2. ... .sn
--- @returns
---   @param v: t.s1.s2. ... .sn
-function subscripts (t, s)
-  return lookup (t, string.split ("%.", s))
-end
-
 -- @func empty: Say whether table is empty
 --   @param t: table
 -- @returns
 --   @param f: true if empty or false otherwise
 function empty (t)
-  for _ in pairs (t) do
-    return false
-  end
-  return true
+  return not next (t)
 end
 
 -- @func size: Find the number of elements in a table
@@ -121,43 +90,20 @@ function rearrange (m, t)
 end
 
 -- @func clone: Make a shallow copy of a table, including any
--- metatable
+-- metatable (for a deep copy, use tree.clone)
 --   @param t: table
+--   @param nometa: if non-nil don't copy metatable
 -- @returns
 --   @param u: copy of table
-function clone (t)
-  local u = setmetatable ({}, getmetatable (t))
+function clone (t, nometa)
+  local u = {}
+  if not nometa then
+    setmetatable (u, getmetatable (t))
+  end
   for i, v in pairs (t) do
     u[i] = v
   end
   return u
-end
-
--- @func deepclone: Make a deep copy of a table, including any
---  metatable
---   @param t: table
--- @returns
---   @param u: copy of table
-function deepclone (t)
-  local r = {}
-  local d = {[t] = r}
-  local function copy (o, x)
-    for i, v in pairs (x) do
-      if type (v) == "table" then
-        if not d[v] then
-          d[v] = {}
-          local q = copy (d[v], v)
-          o[i] = q
-        else
-          o[i] = d[v]
-        end
-      else
-        o[i] = v
-      end
-    end
-    return o
-  end
-  return copy (r, t)
 end
 
 -- @func merge: Merge two tables
@@ -174,12 +120,12 @@ function merge (t, u)
   return r
 end
 
--- @func newDefault: Make a table with a default value
---   @param x: default value
+-- @func new: Make a table with a default entry value
+--   @param [x]: default entry value [nil]
 --   @param [t]: initial table [{}]
 -- @returns
 --   @param u: table for which u[i] is x if u[i] does not exist
-function newDefault (x, t)
+function new (x, t)
   return setmetatable (t or {},
                        {__index = function (t, i)
                                     return x

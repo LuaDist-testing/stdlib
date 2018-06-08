@@ -3,8 +3,12 @@
 
 module ("base", package.seeall)
 
+-- Functional forms of infix operators
+-- Defined here so that other modules can write to it.
+_G.op = {}
+
 require "table_ext"
---require "list" FIXME: sort out op table
+require "list"
 require "string_ext"
 --require "io_ext" FIXME: allow loops
 
@@ -91,6 +95,7 @@ end
 --   @param x: object to convert to string
 -- @returns
 --   @param s: string representation
+_G._tostring = tostring -- make original tostring available
 local _tostring = tostring
 function _G.tostring (x)
   return render (x,
@@ -106,18 +111,6 @@ function _G.tostring (x)
                    end
                    return ""
                  end)
-end
-
--- @func print: Make print use tostring, so that improvements to tostring
--- are picked up
---   @param arg: objects to print
-local _print = print
-function _G.print (...)
-  local arg = {...}
-  for i = 1, select ("#", ...) do
-    arg[i] = tostring (arg[i])
-  end
-  _print (...)
 end
 
 -- @func prettytostring: pretty-print a table
@@ -308,6 +301,33 @@ function _G.ripairs (t)
   t, #t + 1
 end
 
+-- @func nodes: tree iterator
+--   @param tr: tree to iterate over
+-- @returns
+--   @param f: iterator function
+--     @param n: current node
+--     @param p: path to node within the tree
+--   @yields
+--     @param ty: type ("leaf", "branch" (pre-order) or "join" (post-order))
+--     @param p_: path to node ({i1...ik})
+--     @param n_: node
+function _G.nodes (tr)
+  local function visit (n, p)
+    if type (n) == "table" then
+      coroutine.yield ("branch", p, n)
+      for i, v in pairs (n) do
+        table.insert (p, i)
+        visit (v, p)
+        table.remove (p)
+      end
+      coroutine.yield ("join", p, n)
+    else
+      coroutine.yield ("leaf", p, n)
+    end
+  end
+  return coroutine.wrap (visit), tr, {}
+end
+
 -- @func collect: collect the results of an iterator
 --   @param i: iterator
 --   @param ...: arguments
@@ -354,14 +374,14 @@ function _G.filter (p, i, ...)
   return t
 end
 
--- @func fold: Fold a function into an iterator leftwards
+-- @func fold: Fold a binary function into an iterator
 --   @param f: function
---   @param d: element to place in left-most position
+--   @param d: initial first argument
 --   @param i: iterator
 --   @param ...:
 -- @returns
 --   @param r: result
-function _G.foldl (f, i, ...)
+function _G.fold (f, d, i, ...)
   local r = d
   for e in i (...) do
     r = f (r, e)
@@ -369,69 +389,17 @@ function _G.foldl (f, i, ...)
   return r
 end
 
--- @func treeIter: tree iterator
---   @param t: tree to iterate over
--- @returns
---   @param f: iterator function
---   @returns
---     @param e: event
---     @param t: table of values
-function _G.treeIter (t)
-  return coroutine.wrap (function ()
-                           if not coroutine.yield ("branch", t) then
-                             for i, v in ipairs (t) do
-                               if type (v) ~= "table" then
-                                 if coroutine.yield ("leaf", {i, v}) then
-                                   break
-                                 end
-                               else
-                                 for e, u in treeIter (v) do
-                                   if coroutine.yield (e, u) then
-                                     break
-                                   end
-                                 end
-                               end
-                             end
-                             coroutine.yield ("join", t)
-                           end
-                         end)
-end
-
--- FIXME: this version is more obvious but has an illegal yield
--- @func treeIter: tree iterator
---   @param t: tree to iterate over
--- @returns
---   @param f: iterator function
---   @returns
---     @param e: event
---     @param t: table of values
--- function _G.treeIter (t)
---   if not coroutine.yield ("branch", t) then
---     for i, v in ipairs (t) do
---       if type (v) ~= "table" then
---         if coroutine.yield ("leaf", {i, v}) then
---           break
---         end
---       else
---         f (v)
---       end
---     end
---     coroutine.yield ("join", t)
---   end
--- end
-
 -- @func assert: Extend to allow formatted arguments
 --   @param v: value
---   @param ...: arguments for format
+--   @param f, ...: arguments to format
 -- @returns
 --   @param v: value
-function _G.assert (v, ...)
-  local arg = {...}
+function _G.assert (v, f, ...)
   if not v then
-    if #arg == 0 then
-      table.insert (arg, "")
+    if f == nil then
+      f = ""
     end
-    error (string.format (unpack (arg)))
+    error (string.format (f, ...))
   end
   return v
 end
@@ -462,58 +430,44 @@ function _G.die (...)
 end
 
 -- Function forms of operators
-_G.op = {
-  ["+"] = function (...)
-            return list.foldr (function (a, b)
-                                 return a + b
-                               end,
-                               0, {...})
-          end,
-  ["-"] = function (...)
-            return list.foldr (function (a, b)
-                                 return a - b
-                               end,
-                               0, {...})
-          end,
-  ["*"] = function (...)
-            return list.foldr (function (a, b)
-                                 return a * b
-                               end,
-                               1, {...})
-          end,
-  ["/"] = function (a, b)
-            return a / b
-          end,
-  ["and"] = function (...)
-              return list.foldl (function (a, b)
-                                   return a and b
-                                 end, true, {...})
-            end,
-  ["or"] = function (...)
-             return list.foldl (function (a, b)
-                                  return a or b
-                                end,
-                                false, {...})
-           end,
-  ["not"] = function (x)
-              return not x
-            end,
-  ["=="] = function (x, ...)
-             for _, v in ipairs ({...}) do
-               if v ~= x then
-                 return false
-               end
-             end
-             return true
-           end,
-  ["~="] = function (...)
-             local t = {}
-             for _, v in ipairs ({...}) do
-               if t[v] then
-                 return false
-               end
-               t[v] = true
-             end
-             return true
-           end,
-}
+_G.op["[]"] =
+  function (t, s)
+    return t[s]
+  end
+
+_G.op["+"] =
+  function (a, b)
+    return a + b
+  end
+_G.op["-"] =
+  function (a, b)
+    return a - b
+  end
+_G.op["*"] =
+  function (a, b)
+    return a * b
+  end
+_G.op["/"] =
+  function (a, b)
+    return a / b
+  end
+_G.op["and"] =
+  function (a, b)
+    return a and b
+  end
+_G.op["or"] =
+  function (a, b)
+    return a or b
+  end
+_G.op["not"] =
+  function (a)
+    return not a
+  end
+_G.op["=="] =
+  function (a, b)
+    return a == b
+  end
+_G.op["~="] =
+  function (a, b)
+    return a ~= b
+  end

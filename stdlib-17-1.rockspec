@@ -1,16 +1,15 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "8-1"
+version = "17-1"
 -- LuaDist source
 source = {
-  tag = "8-1",
+  tag = "17-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
--- 	url = "http://luaforge.net/frs/download.php/3740/stdlib-8.tar.gz",
--- 	md5 = "4a277a91540dce0fb5deb9fc183537be",
+-- 	url = "http://luaforge.net/frs/download.php/4791/stdlib-17.tar.gz",
 -- 	dir = "stdlib"
 -- }
 description = {
@@ -26,7 +25,7 @@ description = {
 }
 dependencies = {
 	"lua >= 5.1",
-	"lrexlib-pcre >= 2.2.2"
+	"lrexlib-pcre >= 2.2.2",
 }
 build = {
 	type = "none",
@@ -40,14 +39,17 @@ build = {
 			"modules/list.lua",
 			"modules/math_ext.lua",
 			"modules/mbox.lua",
+			"modules/modules.lua",
 			"modules/object.lua",
 			"modules/parser.lua",
-			"modules/rex.lua",
+			"modules/posix_ext.lua",
 			"modules/set.lua",
 			"modules/std.lua",
+			"modules/strict.lua",
 			"modules/string_ext.lua",
 			"modules/table_ext.lua",
-			"modules/xml.lua"
+			"modules/tree.lua",
+			"modules/xml.lua",
 		}
 	}
 }
