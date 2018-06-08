@@ -3,11 +3,21 @@
 POSIX<br>
 </p><hr>
 <p>
-@func system<br>
+<strong>system:</strong> <em>Run a program like os.system, but without a shell<br></em>
 &nbsp;&nbsp;<strong>file</strong>: filename of program to run<br>
 &nbsp;&nbsp;<strong>...</strong>: arguments to the program<br>
 <strong>returns</strong><br>
 &nbsp;&nbsp;<strong>status</strong>: exit code, or nil if fork or wait fails<br>
 &nbsp;&nbsp;[<strong>reason]</strong>: error message, or exit type if wait succeeds<br>
+</p><hr>
+<p>
+<strong>euidaccess:</strong> <em>Check permissions like access, but for euid<br></em>
+Based on the glibc function of the same name. Does not always check<br>
+for read-only file system, text busy, etc., and does not work with<br>
+ACLs &c.<br>
+&nbsp;&nbsp;<strong>file</strong>: file to check<br>
+&nbsp;&nbsp;<strong>mode</strong>: checks to perform (as for access)<br>
+<strong>returns</strong><br>
+&nbsp;&nbsp;<strong>ret</strong>: 0 if access allowed; -1 otherwise (and errno is set)<br>
 </p><hr>
 </body></html>

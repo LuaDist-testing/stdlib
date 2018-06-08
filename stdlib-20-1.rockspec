@@ -1,15 +1,15 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "17-1"
+version = "20-1"
 -- LuaDist source
 source = {
-  tag = "17-1",
+  tag = "20-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
--- 	url = "http://luaforge.net/frs/download.php/4791/stdlib-17.tar.gz",
+-- 	url = "http://luaforge.net/frs/download.php/4805/stdlib-20.zip",
 -- 	dir = "stdlib"
 -- }
 description = {
@@ -31,25 +31,27 @@ build = {
 	type = "none",
 	install = {
 		lua = {
-			"modules/base.lua",
-			"modules/debug_ext.lua",
-			"modules/getopt.lua",
-			"modules/io_ext.lua",
-			"modules/lcs.lua",
-			"modules/list.lua",
-			"modules/math_ext.lua",
-			"modules/mbox.lua",
-			"modules/modules.lua",
-			"modules/object.lua",
-			"modules/parser.lua",
-			"modules/posix_ext.lua",
-			"modules/set.lua",
-			"modules/std.lua",
-			"modules/strict.lua",
-			"modules/string_ext.lua",
-			"modules/table_ext.lua",
-			"modules/tree.lua",
-			"modules/xml.lua",
+			"modules/tree.lua",  
+			"modules/list.lua",  
+			"modules/xml.lua",  
+			"modules/parser.lua",  
+			"modules/lcs.lua",  
+			"modules/package_ext.lua",  
+			"modules/set.lua",  
+			"modules/table_ext.lua",  
+			"modules/strict.lua",  
+			"modules/debug_ext.lua",  
+			"modules/string_ext.lua",  
+			"modules/posix_ext.lua",  
+			"modules/object.lua",  
+			"modules/std.lua",  
+			"modules/math_ext.lua",  
+			"modules/mbox.lua",  
+			"modules/modules.lua",  
+			"modules/getopt.lua",  
+			"modules/base.lua",  
+			"modules/io_ext.lua",  
+			"modules/debug_init.lua",  
 		}
 	}
 }
