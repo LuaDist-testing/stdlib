@@ -284,8 +284,28 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#_G.ileaves">_G.ileaves</a>&nbsp;(tr)</td>
+	<td class="summary">Tree iterator which returns just numbered leaves, in order.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_G.inodes">_G.inodes</a>&nbsp;(tr)</td>
+	<td class="summary">Tree iterator over numbered nodes, in order.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_G.leaves">_G.leaves</a>&nbsp;(tr)</td>
+	<td class="summary">Tree iterator which returns just leaves.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#_G.map">_G.map</a>&nbsp;(f, i, ...)</td>
 	<td class="summary">Map a function over an iterator.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#_G.memoize">_G.memoize</a>&nbsp;(fn)</td>
+	<td class="summary">Memoize a function, by wrapping it in a functable.</td>
 	</tr>
 
 	<tr>
@@ -364,7 +384,7 @@
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#tree_Iterator">tree_Iterator</a>&nbsp;(n, p)</td>
+	<td class="name" nowrap><a href="#tree_Iterator">tree_Iterator</a>&nbsp;(it, tr, n)</td>
 	<td class="summary"> </td>
 	</tr>
 
@@ -727,6 +747,120 @@ the arguments passed to the function
 
 
 
+<dt><a name="_G.ileaves"></a><strong>_G.ileaves</strong>&nbsp;(tr)</dt>
+<dd>
+Tree iterator which returns just numbered leaves, in order.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  tr: tree to iterate over
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return values:</h3>
+<ol>
+	
+	<li>iterator function
+	
+	<li>the tree, as above
+	
+</ol>
+
+
+
+</dd>
+
+
+
+
+<dt><a name="_G.inodes"></a><strong>_G.inodes</strong>&nbsp;(tr)</dt>
+<dd>
+Tree iterator over numbered nodes, in order.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  tr: tree to iterate over
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return values:</h3>
+<ol>
+	
+	<li>iterator function
+	
+	<li>the tree, as above
+	
+</ol>
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../files/base.html#tree_Iterator">
+		tree_Iterator
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="_G.leaves"></a><strong>_G.leaves</strong>&nbsp;(tr)</dt>
+<dd>
+Tree iterator which returns just leaves.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  tr: tree to iterate over
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return values:</h3>
+<ol>
+	
+	<li>iterator function
+	
+	<li>the tree, as above
+	
+</ol>
+
+
+
+</dd>
+
+
+
+
 <dt><a name="_G.map"></a><strong>_G.map</strong>&nbsp;(f, i, ...)</dt>
 <dd>
 Map a function over an iterator.
@@ -756,6 +890,35 @@ Map a function over an iterator.
 
 <h3>Return value:</h3>
 result table
+
+
+
+</dd>
+
+
+
+
+<dt><a name="_G.memoize"></a><strong>_G.memoize</strong>&nbsp;(fn)</dt>
+<dd>
+Memoize a function, by wrapping it in a functable.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  fn: function that returns a single result
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+memoized function
 
 
 
@@ -816,8 +979,14 @@ Tree iterator.
 
 
 
-<h3>Return value:</h3>
-iterator function
+<h3>Return values:</h3>
+<ol>
+	
+	<li>iterator function
+	
+	<li>the tree, as above
+	
+</ol>
 
 
 
@@ -1306,7 +1475,7 @@ separator string
 
 
 
-<dt><a name="tree_Iterator"></a><strong>tree_Iterator</strong>&nbsp;(n, p)</dt>
+<dt><a name="tree_Iterator"></a><strong>tree_Iterator</strong>&nbsp;(it, tr, n)</dt>
 <dd>
 
 
@@ -1315,11 +1484,15 @@ separator string
 <ul>
 	
 	<li>
-	  n: current node
+	  it: 
 	</li>
 	
 	<li>
-	  p: path to node within the tree
+	  tr: 
+	</li>
+	
+	<li>
+	  n: current node
 	</li>
 	
 </ul>

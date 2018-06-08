@@ -1,7 +1,7 @@
 --- Simplified getopt, based on Svenne Panne's Haskell GetOpt.<br>
 -- Usage:
 -- <ul>
--- <li><code>options = Options {Option {...} ...}</br>
+-- <li><code>options = {Option {...}, ...}</br>
 -- getopt.processArgs ()</code></li>
 -- <li>Assumes <code>prog = {name[, banner] [, purpose] [, notes] [, usage]}</code></li>
 -- <li>Options take a single dash, but may have a double dash.</li>
@@ -26,7 +26,6 @@ require "base"
 require "list"
 require "string_ext"
 require "object"
-require "io_ext"
 
 
 --- Perform argument processing
@@ -56,16 +55,14 @@ function getOpt (argIn, options)
         return nil
       end
     end
-    if o.func then
-      return o.func (arg, oldarg)
-    end
     return arg or 1 -- make sure arg has a value
   end
-  -- parse an option
+
   local function parseOpt (opt, arg)
     local o = options.name[opt]
     if o ~= nil then
-      optOut[o.name[1]] = getArg (o, opt, arg, optOut[o.name[1]])
+      optOut[o.name[1]] = optOut[o.name[1]] or {}
+      table.insert (optOut[o.name[1]], getArg (o, opt, arg, optOut[o.name[1]]))
     else
       table.insert (errors, "unrecognized option `-" .. opt .. "'")
     end
@@ -95,15 +92,18 @@ end
 -- @field type type of argument (if any): <code>Req</code>(uired),
 -- <code>Opt</code>(ional)
 -- @field var descriptive name for the argument
--- @field func optional function (newarg, oldarg) to convert argument
--- into actual argument, (if omitted, argument is left as it
--- is)
-_G.Option = Object {_init = {"name", "desc", "type", "var", "func"}}
+_G.Option = Object {_init = {"name", "desc", "type", "var"}}
 
 --- Options table constructor: adds lookup tables for the option names
-function _G.Options (t)
+local function makeOptions (t)
+  t = list.concat (t or {},
+                   {Option {{"version", "V"},
+                            "output version information and exit"},
+                    Option {{"help", "h"},
+                            "display this help and exit"}}
+               )
   local name = {}
-  for _, v in ipairs (t) do
+  for v in list.elems (t) do
     for j, s in pairs (v.name) do
       if name[s] then
         warn ("duplicate option '%s'", s)
@@ -140,8 +140,8 @@ function usageInfo (header, optDesc, pageWidth)
         return "[=" .. opt.var .. "]"
       end
     end
-    local textName = list.map (fmtName, opt.name)
-    textName[1] = textName[1] .. fmtArg ()
+    local textName = list.reverse (list.map (fmtName, opt.name))
+    textName[#textName] = textName[#textName] .. fmtArg ()
     return {table.concat ({table.concat (textName, ", ")}, ", "),
       opt.desc}
   end
@@ -177,9 +177,7 @@ end
 
 --- Emit a usage message.
 function usage ()
-  local name = prog.name
-  prog.name = nil
-  local usage, purpose, notes = "[OPTION...] FILE...", "", ""
+  local usage, purpose, notes = "[OPTION]... [FILE]...", "", ""
   if prog.usage then
     usage = prog.usage
   end
@@ -194,29 +192,24 @@ function usage ()
       notes = notes .. prog.notes
     end
   end
-  warn (getopt.usageInfo ("Usage: " .. name .. " " .. usage .. purpose,
-                          options)
-        .. notes)
+  io.writelines (getopt.usageInfo ("Usage: " .. prog.name .. " " .. usage .. purpose,
+                                   options)
+                 .. notes)
 end
 
 
 --- Simple getOpt wrapper.
--- Adds <code>-version</code>/<code>-v</code> and
--- <code>-help</code>/<code>-h</code>/<code>-?</code> automatically;
+-- Adds <code>-version</code>/<code>-V</code> and
+-- <code>-help</code>/<code>-h</code> automatically;
 -- stops program if there was an error, or if <code>-help</code> or
 -- <code>-version</code> was used.
 function processArgs ()
   local totArgs = #arg
-  options = Options (list.concat (options or {},
-                                  {Option {{"version", "v"},
-                                      "show program version"},
-                                    Option {{"help", "h", "?"},
-                                      "show this help"}}
-                              ))
+  options = makeOptions (options)
   local errors
   _G.arg, opt, errors = getopt.getOpt (arg, options)
   if (opt.version or opt.help) and prog.banner then
-    io.stderr:write (prog.banner .. "\n")
+    io.writelines (prog.banner)
   end
   if #errors > 0 or opt.help then
     local name = prog.name
@@ -240,16 +233,11 @@ _G.options = nil
 -- A small and hopefully enlightening example:
 if type (_DEBUG) == "table" and _DEBUG.std then
 
-  function out (o)
-    return o or io.stdout
-  end
-
-  options = Options {
-    Option {{"verbose", "v"}, "verbosely list files"},
-    Option {{"version", "release", "V", "?"}, "show version info"},
-    Option {{"output", "o"}, "dump to FILE", "Opt", "FILE", out},
-    Option {{"name", "n"}, "only dump USER's files", "Req", "USER"},
-  }
+  options = makeOptions ({
+                           Option {{"verbose", "v"}, "verbosely list files"},
+                           Option {{"output", "o"}, "dump to FILE", "Opt", "FILE"},
+                           Option {{"name", "n"}, "only dump USER's files", "Req", "USER"},
+                       })
 
   function test (cmdLine)
     local nonOpts, opts, errors = getopt.getOpt (cmdLine, options)
@@ -264,20 +252,22 @@ if type (_DEBUG) == "table" and _DEBUG.std then
   end
 
   -- FIXME: Turn the following documentation into unit tests
-  prog = {name = "foobar"} -- in case of errors
-  -- example runs:
+  prog = {name = "foobar"} -- for errors
+  -- Example runs:
   test {"foo", "-v"}
-  -- options={verbose=1}  args={1=foo,n=1}
+  -- options={verbose={1}}  args={1=foo}
   test {"foo", "--", "-v"}
-  -- options={}  args={1=foo,2=-v,n=2}
-  test {"-o", "-?", "-name", "bar", "--name=baz"}
-  -- options={output=userdata(?): 0x????????,version=1,name=baz}  args={}
+  -- options={}  args={1=foo,2=-v}
+  test {"-o", "-V", "-name", "bar", "--name=baz"}
+  -- options={name={"baz"},version={1},output={1}}  args={}
   test {"-foo"}
-  -- unrecognized option `foo'
-  -- Usage: foobar [OPTION...] FILE...
-  --   -verbose, -v                verbosely list files
-  --   -version, -release, -V, -?  show version info
-  --   -output[=FILE], -o          dump to FILE
-  --   -name=USER, -n              only dump USER's files
+  -- unrecognized option `-foo'
+  -- Usage: foobar [OPTION]... [FILE]...
+  --
+  --   -v, -verbose                verbosely list files
+  --   -o, -output[=FILE]          dump to FILE
+  --   -n, -name=USER              only dump USER's files
+  --   -V, -version                output version information and exit
+  --   -h, -help                   display this help and exit
 
 end

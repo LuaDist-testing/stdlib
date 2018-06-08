@@ -14,12 +14,14 @@ end
 
 --- Tree <code>__index</code> metamethod.
 -- @param tr tree
--- @param i non-table, or list of indices <code>{i<sub>1</sub> ...
+-- @param i non-table, or list of keys <code>{i<sub>1</sub> ...
 -- i<sub>n</sub>}</code>
 -- @return <code>tr[i]...[i<sub>n</sub>]</code> if i is a table, or
 -- <code>tr[i]</code> otherwise
 function metatable.__index (tr, i)
-  if type (i) == "table" then
+  -- FIXME: the following doesn't treat list keys correctly
+  --        e.g. tr[{{1, 2}, {3, 4}}], maybe flatten first?
+  if type (i) == "table" and #i > 0 then
     return list.foldl (op["[]"], tr, i)
   else
     return rawget (tr, i)
@@ -30,14 +32,14 @@ end
 -- Sets <code>tr[i<sub>1</sub>]...[i<sub>n</sub>] = v</code> if i is a
 -- table, or <code>tr[i] = v</code> otherwise
 -- @param tr tree
--- @param i non-table, or list of indices <code>{i<sub>1</sub> ...
+-- @param i non-table, or list of keys <code>{i<sub>1</sub> ...
 -- i<sub>n</sub>}</code>
 -- @param v value
 function metatable.__newindex (tr, i, v)
   if type (i) == "table" then
     for n = 1, #i - 1 do
-      if type (tr[i[n]]) ~= "table" then
-        tr[i[n]] = tree.new ()
+      if getmetatable (tr[i[n]]) ~= metatable then
+        rawset (tr, i[n], tree.new ())
       end
       tr = tr[i[n]]
     end

@@ -7,8 +7,8 @@ module ("string", package.seeall)
 --
 --   John Hughes's and Simon Peyton Jones's Pretty Printer Combinators
 --
---   Based on The Design of a Pretty-printing Library in Advanced
---   Functional Programming, Johan Jeuring and Erik Meijer (eds), LNCS 925
+--   Based on "The Design of a Pretty-printing Library in Advanced
+--   Functional Programming", Johan Jeuring and Erik Meijer (eds), LNCS 925
 --   http://www.cs.chalmers.se/~rjmh/Papers/pretty.ps
 --   Heavily modified by Simon Peyton Jones, Dec 96
 --
@@ -34,26 +34,32 @@ module ("string", package.seeall)
 -- @return <code>string.sub (s, i, i)</code> if i is a number, or
 -- falls back to any previous metamethod (by default, string methods)
 local old__index = getmetatable ("").__index
-getmetatable ("").__index =
-  function (s, i)
-    if type (i) == "number" then
-      return sub (s, i, i)
+getmetatable ("").__index = function (s, i)
+  if type (i) == "number" then
+    return sub (s, i, i)
     -- Fall back to old metamethods
-    elseif type (old__index) == "function" then
-      return old__index (s, i)
-    else
-      return old__index[i]
-    end
+  elseif type (old__index) == "function" then
+    return old__index (s, i)
+  else
+    return old__index[i]
   end
+end
 
 --- Give strings an append metamethod.
 -- @param s string
 -- @param c character (1-character string)
 -- @return <code>s .. c</code>
-getmetatable ("").__append =
-  function (s, c)
-    return s .. c
-  end
+getmetatable ("").__append = function (s, c)
+  return s .. c
+end
+
+--- Give strings a concat metamethod.
+-- @param s string
+-- @param o object
+-- @return s .. tostring (o)
+getmetatable ("").__concat = function (s, o)
+  return tostring (s) .. tostring (o)
+end
 
 --- Capitalise each word in a string.
 -- @param s string
@@ -221,31 +227,6 @@ function finds (s, p, init, plain)
     end
   until not from
   return l
-end
-
---- Perform multiple calls to gsub.
--- @param s string to call gsub on
--- @param sub <code>{pattern1=replacement1 ...}</code>
--- @param n upper limit on replacements (default: infinite)
--- @return result string
--- @return number of replacements made
-function gsubs (s, sub, n)
-  local r = 0
-  for i, v in pairs (sub) do
-    local rep
-    if n ~= nil then
-      s, rep = gsub (s, i, v, n)
-      r = r + rep
-      n = n - rep
-      if n == 0 then
-        break
-      end
-    else
-      s, rep = i.gsub (s, i, v)
-      r = r + rep
-    end
-  end
-  return s, r
 end
 
 --- Split a string at a given separator.

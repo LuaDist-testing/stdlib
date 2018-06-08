@@ -35,7 +35,7 @@ end
 local metatable = {}
 function new (l)
   local s = setmetatable ({}, metatable)
-  for _, e in ipairs (l) do
+  for e in list.elems (l) do
     insert (s, e)
   end
   return s
@@ -43,7 +43,7 @@ end
 
 --- Iterator for sets
 -- TODO: Make the iterator return only the key
-elements = pairs
+elems = pairs
 
 
 -- High level methods (representation-independent)
@@ -54,7 +54,7 @@ elements = pairs
 -- @return s with elements of t removed
 function difference (s, t)
   local r = new {}
-  for e in elements (s) do
+  for e in elems (s) do
     if not member (t, e) then
       insert (r, e)
     end
@@ -76,7 +76,7 @@ end
 -- @return set intersection of s and t
 function intersection (s, t)
   local r = new {}
-  for e in elements (s) do
+  for e in elems (s) do
     if member (t, e) then
       insert (r, e)
     end
@@ -90,10 +90,10 @@ end
 -- @return set union of s and t
 function union (s, t)
   local r = new {}
-  for e in elements (s) do
+  for e in elems (s) do
     insert (r, e)
   end
-  for e in elements (t) do
+  for e in elems (t) do
     insert (r, e)
   end
   return r
@@ -105,7 +105,7 @@ end
 -- @return <code>true</code> if s is a subset of t, <code>false</code>
 -- otherwise
 function subset (s, t)
-  for e in elements (s) do
+  for e in elems (s) do
     if not member (t, e) then
       return false
     end

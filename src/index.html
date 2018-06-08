@@ -252,7 +252,7 @@
 
 	<tr>
 		<td class="name"><a href="modules/getopt.html">getopt</a></td>
-		<td class="summary">Simplified getopt, based on Svenne Panne's Haskell GetOpt.<br> Usage: <ul> <li><code>options = Options {Option {...} ...}</br> getopt.processArgs ()</code></li> <li>Assumes <code>prog = {name[, banner] [, purpose] [, notes] [, usage]}</code></li> <li>Options take a single dash, but may have a double dash.</li> <li>Arguments may be given as <code>-opt=arg</code> or <code>-opt arg</code>.</li> <li>If an option taking an argument is given multiple times, only the last value is returned; missing arguments are returned as 1.</li> </ul> getOpt, usageInfo and usage can be called directly (see below, and the example at the end).</td>
+		<td class="summary">Simplified getopt, based on Svenne Panne's Haskell GetOpt.<br> Usage: <ul> <li><code>options = {Option {...}, ...}</br> getopt.processArgs ()</code></li> <li>Assumes <code>prog = {name[, banner] [, purpose] [, notes] [, usage]}</code></li> <li>Options take a single dash, but may have a double dash.</li> <li>Arguments may be given as <code>-opt=arg</code> or <code>-opt arg</code>.</li> <li>If an option taking an argument is given multiple times, only the last value is returned; missing arguments are returned as 1.</li> </ul> getOpt, usageInfo and usage can be called directly (see below, and the example at the end).</td>
 	</tr>
 
 	<tr>
@@ -282,7 +282,7 @@
 
 	<tr>
 		<td class="name"><a href="modules/object.html">object</a></td>
-		<td class="summary">Prototype-based objects <ul> <li>Create an object/class:</li> <ul> <li><code>object/class = prototype {value, ...; field = value ...}</code></li> <li>An object's metatable is itself.</li> <li>In the initialiser, unnamed values are assigned to the fields given by <code>_init</code> (assuming the default <code>_clone</code>).</li> <li>Private fields and methods start with "<code>_</code>".</li> </ul> <li>Access an object field: <code>object.field</code></li> <li>Call an object method: <code>object:method (...)</code></li> <li>Call a class method: <code>Class.method (object, ...)</li> <li>Add a field: <code>object.field = x</code></li> <li>Add a method: <code>function object:method (...) ...</td>
+		<td class="summary">Prototype-based objects <ul> <li>Create an object/class:</li> <ul> <li>Either, if the <code>_init</code> field is a list: <ul> <li><code>object/Class = prototype {value, ...; field = value, ...}</code></li> <li>Named values are assigned to the corresponding fields, and unnamed values to the fields given by <code>_init</code>.</li> </ul> <li>Or, if the <code>_init</code> field is a function: <ul> <li><code>object/Class = prototype (value, ...)</code></li> <li>The given values are passed as arguments to the <code>_init</code> function.</li> </ul> <li>An object's metatable is itself.</li> <li>Private fields and methods start with "<code>_</code>".</li> </ul> <li>Access an object field: <code>object.field</code></li> <li>Call an object method: <code>object:method (...)</code></li> <li>Call a class method: <code>Class.method (object, ...)</code></li> <li>Add a field: <code>object.field = x</code></li> <li>Add a method: <code>function object:method (...) ...</td>
 	</tr>
 
 	<tr>

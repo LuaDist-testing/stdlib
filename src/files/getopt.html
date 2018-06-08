@@ -223,7 +223,7 @@
 <h1>File <code>getopt.lua</code></h1>
 
 
-<p>Simplified getopt, based on Svenne Panne's Haskell GetOpt.<br> Usage: <ul> <li><code>options = Options {Option {...} ...}</br> getopt.processArgs ()</code></li> <li>Assumes <code>prog = {name[, banner] [, purpose] [, notes] [, usage]}</code></li> <li>Options take a single dash, but may have a double dash.</li> <li>Arguments may be given as <code>-opt=arg</code> or <code>-opt arg</code>.</li> <li>If an option taking an argument is given multiple times, only the last value is returned; missing arguments are returned as 1.</li> </ul> getOpt, usageInfo and usage can be called directly (see below, and the example at the end). Set _DEBUG.std to a non-nil value to run the example. <ul> <li>TODO: Sort out the packaging. getopt.Option is tedious to type, but surely Option shouldn't be in the root namespace?</li> <li>TODO: Wrap all messages; do all wrapping in processArgs, not usageInfo; use sdoc-like library (see string.format todos).</li> <li>TODO: Don't require name to be repeated in banner.</li> <li>TODO: Store version separately (construct banner?).</li> </ul></p>
+<p>Simplified getopt, based on Svenne Panne's Haskell GetOpt.<br> Usage: <ul> <li><code>options = {Option {...}, ...}</br> getopt.processArgs ()</code></li> <li>Assumes <code>prog = {name[, banner] [, purpose] [, notes] [, usage]}</code></li> <li>Options take a single dash, but may have a double dash.</li> <li>Arguments may be given as <code>-opt=arg</code> or <code>-opt arg</code>.</li> <li>If an option taking an argument is given multiple times, only the last value is returned; missing arguments are returned as 1.</li> </ul> getOpt, usageInfo and usage can be called directly (see below, and the example at the end). Set _DEBUG.std to a non-nil value to run the example. <ul> <li>TODO: Sort out the packaging. getopt.Option is tedious to type, but surely Option shouldn't be in the root namespace?</li> <li>TODO: Wrap all messages; do all wrapping in processArgs, not usageInfo; use sdoc-like library (see string.format todos).</li> <li>TODO: Don't require name to be repeated in banner.</li> <li>TODO: Store version separately (construct banner?).</li> </ul></p>
 
 
 
@@ -234,13 +234,13 @@
 <table class="function_list">
 
 	<tr>
-	<td class="name" nowrap><a href="#_G.Options">_G.Options</a>&nbsp;(t)</td>
-	<td class="summary">Options table constructor: adds lookup tables for the option names </td>
+	<td class="name" nowrap><a href="#getOpt">getOpt</a>&nbsp;(argIn, options)</td>
+	<td class="summary">Perform argument processing </td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#getOpt">getOpt</a>&nbsp;(argIn, options)</td>
-	<td class="summary">Perform argument processing </td>
+	<td class="name" nowrap><a href="#makeOptions">makeOptions</a>&nbsp;(t)</td>
+	<td class="summary">Options table constructor: adds lookup tables for the option names </td>
 	</tr>
 
 	<tr>
@@ -286,32 +286,6 @@
 
 
 
-<dt><a name="_G.Options"></a><strong>_G.Options</strong>&nbsp;(t)</dt>
-<dd>
-Options table constructor: adds lookup tables for the option names
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  t: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
 <dt><a name="getOpt"></a><strong>getOpt</strong>&nbsp;(argIn, options)</dt>
 <dd>
 Perform argument processing
@@ -353,9 +327,35 @@ Perform argument processing
 
 
 
+<dt><a name="makeOptions"></a><strong>makeOptions</strong>&nbsp;(t)</dt>
+<dd>
+Options table constructor: adds lookup tables for the option names
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  t: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
 <dt><a name="processArgs"></a><strong>processArgs</strong>&nbsp;()</dt>
 <dd>
-Simple getOpt wrapper. Adds <code>-version</code>/<code>-v</code> and <code>-help</code>/<code>-h</code>/<code>-?</code> automatically; stops program if there was an error, or if <code>-help</code> or <code>-version</code> was used.
+Simple getOpt wrapper. Adds <code>-version</code>/<code>-V</code> and <code>-help</code>/<code>-h</code> automatically; stops program if there was an error, or if <code>-help</code> or <code>-version</code> was used.
 
 
 

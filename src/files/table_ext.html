@@ -239,6 +239,11 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#clone_rename">clone_rename</a>&nbsp;(map, t)</td>
+	<td class="summary">Clone a table, renaming some keys.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#empty">empty</a>&nbsp;(t)</td>
 	<td class="summary">Return whether table is empty.</td>
 	</tr>
@@ -255,17 +260,12 @@
 
 	<tr>
 	<td class="name" nowrap><a href="#merge">merge</a>&nbsp;(t, u)</td>
-	<td class="summary">Merge two tables.</td>
+	<td class="summary">Merge one table into another.</td>
 	</tr>
 
 	<tr>
 	<td class="name" nowrap><a href="#new">new</a>&nbsp;(x, t)</td>
 	<td class="summary">Make a table with a default value for unset keys.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#rearrange">rearrange</a>&nbsp;(m, t)</td>
-	<td class="summary">Rearrange some indices of a table.</td>
 	</tr>
 
 	<tr>
@@ -315,6 +315,39 @@ Make a shallow copy of a table, including any metatable (for a deep copy, use tr
 	
 	<li>
 	  nometa: if non-nil don't copy metatable
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+copy of table
+
+
+
+</dd>
+
+
+
+
+<dt><a name="clone_rename"></a><strong>clone_rename</strong>&nbsp;(map, t)</dt>
+<dd>
+Clone a table, renaming some keys.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  map: table <code>{old_key=new_key, ...}</code>
+	</li>
+	
+	<li>
+	  t: table to copy
 	</li>
 	
 </ul>
@@ -423,7 +456,7 @@ inverted table <code>{v=i, ...}</code>
 
 <dt><a name="merge"></a><strong>merge</strong>&nbsp;(t, u)</dt>
 <dd>
-Merge two tables. If there are duplicate fields, u's will be used. The metatable of the returned table is that of t.
+Merge one table into another. <code>u</code> is merged into <code>t</code>.
 
 
 <h3>Parameters</h3>
@@ -445,7 +478,7 @@ Merge two tables. If there are duplicate fields, u's will be used. The metatable
 
 
 <h3>Return value:</h3>
-merged table
+first table
 
 
 
@@ -479,39 +512,6 @@ Make a table with a default value for unset keys.
 
 <h3>Return value:</h3>
 table whose unset elements are x
-
-
-
-</dd>
-
-
-
-
-<dt><a name="rearrange"></a><strong>rearrange</strong>&nbsp;(m, t)</dt>
-<dd>
-Rearrange some indices of a table.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  m: table <code>{old_index=new_index, ...}</code>
-	</li>
-	
-	<li>
-	  t: table to rearrange
-	</li>
-	
-</ul>
-
-
-
-
-
-
-<h3>Return value:</h3>
-rearranged table
 
 
 

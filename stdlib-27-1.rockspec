@@ -1,17 +1,17 @@
 -- This file was automatically generated for the LuaDist project.
 
 package="stdlib"
-version="25-1"
+version="27-1"
 -- LuaDist source
 source = {
-  tag = "25-1",
+  tag = "27-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---   url = "http://luaforge.net/frs/download.php/4849/stdlib-25.zip",
---   md5 = "4d849d7a0ed3a6fa0af5aa276ced3d3e",
---   dir = "stdlib-25"
+--   url = "https://github.com/downloads/rrthomas/lua-stdlib/stdlib-27.zip",
+--   md5 = "46c1330960365eb4aacf1a2e9dd6f845",
+--   dir = "stdlib-27"
 -- }
 description = {
   summary = "General Lua libraries",
@@ -20,7 +20,7 @@ description = {
       including list, table and functional operations, regexps, objects,
       pickling, pretty-printing and getopt.
    ]],
-  homepage = "http://luaforge.net/projects/stdlib/",
+  homepage = "http://github.com/rrthomas/stdlib/",
   license = "MIT/X11"
 }
 dependencies = {
@@ -28,6 +28,7 @@ dependencies = {
 }
 build = {
   type = "command",
-  build_command = "LUA=$(LUA) CPPFLAGS=-I$(LUA_INCDIR) ./configure --prefix=$(PREFIX) --libdir=$(LIBDIR) --datadir=$(LUADIR)",
-  install_command = "make install"
+  build_command = "LUA=$(LUA) CPPFLAGS=-I$(LUA_INCDIR) ./configure --prefix=$(PREFIX) --libdir=$(LIBDIR) --datadir=$(LUADIR) && make clean && make",
+  install_command = "make install",
+  copy_directories = {}
 }

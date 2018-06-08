@@ -250,7 +250,7 @@
 
 	<tr>
 	<td class="name" nowrap><a href="#readlines">readlines</a>&nbsp;(h)</td>
-	<td class="summary">Read a file into a list of lines and close it.</td>
+	<td class="summary">Read a file or file handle into a list of lines.</td>
 	</tr>
 
 	<tr>
@@ -259,12 +259,17 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#slurp">slurp</a>&nbsp;(h)</td>
+	<td class="summary">Slurp a file handle.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#splitdir">splitdir</a>&nbsp;(path)</td>
 	<td class="summary">Split a directory path into components.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#writeline">writeline</a>&nbsp;(h, ...)</td>
+	<td class="name" nowrap><a href="#writelines">writelines</a>&nbsp;(h, ...)</td>
 	<td class="summary">Write values adding a newline after each.</td>
 	</tr>
 
@@ -372,14 +377,14 @@ Process files specified on the command-line. If no files given, process <code>io
 
 <dt><a name="readlines"></a><strong>readlines</strong>&nbsp;(h)</dt>
 <dd>
-Read a file into a list of lines and close it.
+Read a file or file handle into a list of lines.
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  h: file handle or name (default: <code>io.input ()</code>)
+	  h: file handle or name (default: <code>io.input ()</code>); if h is a handle, the file is closed after reading
 	</li>
 	
 </ul>
@@ -428,6 +433,35 @@ output, or nil if error
 
 
 
+<dt><a name="slurp"></a><strong>slurp</strong>&nbsp;(h)</dt>
+<dd>
+Slurp a file handle.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  h: file handle or name (default: <code>io.input ()</code>)
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+contents of file or handle, or nil if error
+
+
+
+</dd>
+
+
+
+
 <dt><a name="splitdir"></a><strong>splitdir</strong>&nbsp;(path)</dt>
 <dd>
 Split a directory path into components. Empty components are retained: the root directory becomes <code>{"", ""}</code>.
@@ -457,7 +491,7 @@ list of path components
 
 
 
-<dt><a name="writeline"></a><strong>writeline</strong>&nbsp;(h, ...)</dt>
+<dt><a name="writelines"></a><strong>writelines</strong>&nbsp;(h, ...)</dt>
 <dd>
 Write values adding a newline after each.
 

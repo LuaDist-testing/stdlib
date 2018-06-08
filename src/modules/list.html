@@ -237,6 +237,11 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#compare">compare</a>&nbsp;(l, m)</td>
+	<td class="summary">Compare two lists element by element left-to-right </td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#concat">concat</a>&nbsp;(...)</td>
 	<td class="summary">Concatenate lists.</td>
 	</tr>
@@ -393,6 +398,39 @@ Append an item to a list.
 
 <h3>Return value:</h3>
 <code>{l[1], ..., l[#l], x}</code>
+
+
+
+</dd>
+
+
+
+
+<dt><a name="compare"></a><strong>compare</strong>&nbsp;(l, m)</dt>
+<dd>
+Compare two lists element by element left-to-right
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  l: first list
+	</li>
+	
+	<li>
+	  m: second list
+	</li>
+	
+</ul>
+
+
+
+
+
+
+<h3>Return value:</h3>
+-1 if <code>l</code> is less than <code>m</code>, 0 if they are the same, and 1 if <code>l</code> is greater than <code>m</code>
 
 
 
@@ -1019,7 +1057,7 @@ Shape a list according to a list of dimensions.  Dimensions are given outermost 
 
 
 <h3>Return value:</h3>
-reshaped list
+reshaped list FIXME: Use ileaves instead of flatten (needs a while instead of a for in fill function)
 
 
 

@@ -102,8 +102,8 @@ Parser = Object {_init = {"grammar"}}
 --- Parser constructor
 -- @param grammar parser grammar
 -- @return parser
-function Parser:_clone (grammar)
-  local init = table.permute (self._init, grammar)
+function Parser:_init (grammar)
+  local init = table.clone_rename (self._init, grammar)
   -- Reformat the abstract syntax rules
   for rname, rule in pairs (init.grammar) do
     if name ~= "lexemes" then
@@ -130,8 +130,7 @@ function Parser:_clone (grammar)
       end
     end
   end
-  local object = table.merge (self, init)
-  return setmetatable (object, object)
+  return table.merge (self, init)
 end
 
 --- Parse a token list.
@@ -143,7 +142,7 @@ function Parser:parse (start, token, from)
 
   local grammar = self.grammar -- for consistency and brevity
   local rule, symbol -- functions called before they are defined
-  
+
   -- Try to parse an optional symbol.
   -- @param sym the symbol being tried
   -- @param from the index of the token to start from
@@ -224,7 +223,7 @@ function Parser:parse (start, token, from)
   local function production (name, prod, from)
     local tree = {ty = name}
     local to = from
-    for _, prod in ipairs (prod) do
+    for prod in list.elems (prod) do
       local sym
       sym, to = symbol (prod, to)
       if to then
@@ -256,7 +255,7 @@ function Parser:parse (start, token, from)
   rule = function (name, from) -- declared at the top
     local alt = grammar[name]
     local tree, to
-    for _, alt in ipairs (alt) do
+    for alt in list.elems (alt) do
       tree, to = production (name, alt, from)
       if to then
         return tree, to
