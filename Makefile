@@ -51,9 +51,9 @@ POST_UNINSTALL = :
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
-	$(srcdir)/luarocks-config.lua.in $(dist_data_DATA) \
-	$(dist_doc_DATA) $(dist_files_DATA) $(dist_modules_DATA) \
-	AUTHORS INSTALL README build-aux/install-sh build-aux/missing \
+	$(dist_data_DATA) $(dist_doc_DATA) $(dist_files_DATA) \
+	$(dist_modules_DATA) AUTHORS INSTALL README \
+	build-aux/install-sh build-aux/missing \
 	$(top_srcdir)/build-aux/install-sh \
 	$(top_srcdir)/build-aux/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -65,7 +65,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = luarocks-config.lua
+CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -162,7 +162,7 @@ AUTOHEADER = ${SHELL} /Volumes/Home/Devo/lua-stdlib--master--0/build-aux/missing
 AUTOMAKE = ${SHELL} /Volumes/Home/Devo/lua-stdlib--master--0/build-aux/missing automake-1.13
 AWK = awk
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"stdlib\" -DPACKAGE_TARNAME=\"stdlib\" -DPACKAGE_VERSION=\"32\" -DPACKAGE_STRING=\"stdlib\ 32\" -DPACKAGE_BUGREPORT=\"rrt@sc3d.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"stdlib\" -DVERSION=\"32\"
+DEFS = -DPACKAGE_NAME=\"stdlib\" -DPACKAGE_TARNAME=\"stdlib\" -DPACKAGE_VERSION=\"33\" -DPACKAGE_STRING=\"stdlib\ 33\" -DPACKAGE_BUGREPORT=\"rrt@sc3d.org\" -DPACKAGE_URL=\"\" -DPACKAGE=\"stdlib\" -DVERSION=\"33\"
 ECHO_C = \c
 ECHO_N = 
 ECHO_T = 
@@ -187,15 +187,15 @@ MKDIR_P = build-aux/install-sh -c -d
 PACKAGE = stdlib
 PACKAGE_BUGREPORT = rrt@sc3d.org
 PACKAGE_NAME = stdlib
-PACKAGE_STRING = stdlib 32
+PACKAGE_STRING = stdlib 33
 PACKAGE_TARNAME = stdlib
 PACKAGE_URL = 
-PACKAGE_VERSION = 32
+PACKAGE_VERSION = 33
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = 
-VERSION = 32
+VERSION = 33
 abs_builddir = /Volumes/Home/Devo/lua-stdlib--master--0
 abs_srcdir = /Volumes/Home/Devo/lua-stdlib--master--0
 abs_top_builddir = /Volumes/Home/Devo/lua-stdlib--master--0
@@ -272,7 +272,9 @@ SOURCES = \
 	$(NOTHING_ELSE)
 
 SPECS = \
+	specs/getopt_spec.lua		\
 	specs/package_ext_spec.lua	\
+	specs/string_ext_spec.lua	\
 	specs/table_ext_spec.lua	\
 	$(NOTHING_ELSE)
 
@@ -289,6 +291,7 @@ EXTRA_DIST = \
 	specs/specl			\
 	specs/lib/specl.lua		\
 	src/std.lua.in			\
+	GNUmakefile			\
 	$(SPECS)			\
 	$(NOTHING_ELSE)
 
@@ -330,8 +333,6 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
-luarocks-config.lua: $(top_builddir)/config.status $(srcdir)/luarocks-config.lua.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-dist_dataDATA: $(dist_data_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(dist_data_DATA)'; test -n "$(datadir)" || list=; \
@@ -775,50 +776,8 @@ src/std.lua: src/std.lua.in
 $(dist_doc_DATA): $(SOURCES)
 	cd src && $(LUADOC) *.lua
 
-rockspecs:
-	rm -f *.rockspec
-	$(LUA_ENV) $(LUA) mkrockspecs.lua $(PACKAGE) $(VERSION)
-	$(LUA_ENV) $(LUA) mkrockspecs.lua $(PACKAGE) git
-
 check-local:
 	$(AM_V_at)$(SPEC_ENV) $(LUA) $(srcdir)/specs/specl $(srcdir)/specs/*_spec.lua
-
-GIT ?= git
-LN_S ?= ln -sf
-
-tag-release:
-	$(GIT) diff --exit-code && \
-	$(GIT) tag -f -a -m "Release tag" v$(VERSION)
-
-define unpack-distcheck-release
-	rm -rf $(PACKAGE)-$(VERSION)/ && \
-	tar zxf $(PACKAGE)-$(VERSION).tar.gz && \
-	cp -a -f $(PACKAGE)-$(VERSION)/* . && \
-	rm -rf $(PACKAGE)-$(VERSION)/ && \
-	echo "unpacked $(PACKAGE)-$(VERSION).tar.gz over current directory" && \
-	echo './configure && make all rockspecs' && \
-	./configure --version && ./configure && \
-	$(MAKE) all rockspecs
-endef
-
-check-in-release: distcheck
-	current_branch=`$(GIT) symbolic-ref HEAD`; \
-	{ $(GIT) checkout -b release 2>/dev/null || $(GIT) checkout release; } && \
-	{ $(GIT) pull origin release || true; } && \
-	$(unpack-distcheck-release) && \
-	$(GIT) add . && \
-	$(GIT) commit -a -m "Release v$(VERSION)" && \
-	$(GIT) tag -f -a -m "Full source release tag" release-v$(VERSION); \
-	$(GIT) checkout `echo "$$current_branch" | sed 's,.*/,,g'`
-
-GIT_PUBLISH ?= $(GIT)
-
-release: rockspecs
-	$(MAKE) tag-release && \
-	$(MAKE) check-in-release && \
-	$(GIT_PUBLISH) push && $(GIT_PUBLISH) push --tags && \
-	LUAROCKS_CONFIG=$(abs_srcdir)/luarocks-config.lua luarocks --tree=$(abs_srcdir)/luarocks build $(PACKAGE)-$(VERSION)-1.rockspec && \
-	$(WOGER) lua package=$(PACKAGE) package_name=$(PACKAGE_NAME) version=$(VERSION) description="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?-git-1.rockspec' $(LUA) -l$(PACKAGE) -e 'print (description.summary)'`" notes=release-notes-$(VERSION) home="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?-git-1.rockspec' $(LUA) -l$(PACKAGE) -e 'print (description.homepage)'`"
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

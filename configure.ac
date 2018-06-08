@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script
 
 dnl Initialise autoconf and automake
-AC_INIT(stdlib, 32, rrt@sc3d.org)
+AC_INIT(stdlib, 33, rrt@sc3d.org)
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign])
 AM_SILENT_RULES([yes])
@@ -14,5 +14,5 @@ AX_WITH_PROG([LUADOC], [luadoc], [:])
 
 dnl Generate output files
 AC_CONFIG_MACRO_DIR(m4)
-AC_CONFIG_FILES([Makefile luarocks-config.lua])
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
