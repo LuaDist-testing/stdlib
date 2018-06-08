@@ -1,0 +1,2262 @@
+2011-08-19  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/.gitignore: Fixup.
+
+2011-05-27  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/.gitignore: Add some more LuaDoc stuff.
+
+2011-05-27  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/list.lua, modules/math_ext.lua: Partial conversion of
+	documentation to LuaDoc.
+
+2011-06-06  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Push tags, but don’t tag until we’ve successfully
+	released.
+
+2011-06-06  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Update woger call to new keyword style.
+
+2011-06-06  Reuben Thomas <rrt@sc3d.org>
+
+	* README, modules/fstable.lua: Add fstable module for storing tables
+	as file trees.
+
+2011-06-06  Reuben Thomas <rrt@sc3d.org>
+
+	* README: Replace reference to ldoc with one to LuaDoc.
+
+2011-06-06  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile, modules/.gitignore, modules/base.lua,
+	modules/debug_ext.lua, modules/getopt.lua, modules/io_ext.lua,
+	modules/lcs.lua, modules/list.lua, modules/math_ext.lua,
+	modules/mbox.lua, modules/object.lua, modules/package_ext.lua,
+	modules/parser.lua, modules/posix_ext.lua, modules/set.lua,
+	modules/std.lua, modules/strict.lua, modules/string_ext.lua,
+	modules/table_ext.lua, modules/tree.lua, modules/xml.lua,
+	utils/ldoc: Convert documentation to LuaDoc, and retire ldoc.
+
+2011-06-05  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/.gitignore: Add index.html.
+
+2011-05-22  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/base.lua, modules/getopt.lua, modules/xml.lua: Fix faulty
+	ldoc tags.
+
+2011-05-21  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/getopt.lua: Fix return code on --help to be 0.  Make dieWithUsage into plain usage, and don’t exit at end.
+
+2011-05-19  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/base.lua: Add some missing param tags.
+
+2011-05-03  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/modules.lua: Comment out strict from default set to make
+	co-existence with other code easier.
+
+2011-05-03  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/base.lua, modules/debug_ext.lua: Fix calls to writeLine to
+	be to writeline.
+
+2011-05-02  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Add readlines and writeline to file handle
+	metatable.
+
+2011-05-02  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Fix capitalization of readlines and writeline
+	in docstrings.
+
+2011-04-15  David Favro <lua@meta-dynamic.com>
+
+	* utils/ldoc: Fixed bug: ldoc used writeLine() rather than
+	writeline().
+
+2011-04-12  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/posix_ext.lua: Always return nil on error, not -1.
+
+2011-04-04  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Rename readLines to readlines and writeLine to
+	writeline.
+
+2011-03-23  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/debug_init.lua: Only set _DEBUG to false if it’s not
+	already initialised.
+
+2011-03-19  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Fix splitdir.
+
+2011-03-12  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/debug_ext.lua, modules/debug_init.lua,
+	modules/modules.lua: Initialise _DEBUG early so that it can be
+	overridden by app and still be strict.lua-compatible.
+
+2011-03-12  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/std.lua: Shorten a TODO.
+
+2011-03-09  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/modules.lua, utils/mk1file: Restore modules.lua as holding
+	standard list, to un-break std.lua.
+
+2011-03-09  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/modules.lua, utils/mk1file: Allow mk1file to generate
+	customized sets of modules, with the standard set as the default.
+
+2011-03-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/posix_ext.lua: Remove unnecessary posix. prefix.
+
+2011-03-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/modules.lua: Correct name of package_ext.
+
+2011-03-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/list.lua: Remove redundant comments.
+
+2011-03-08  Reuben Thomas <rrt@sc3d.org>
+
+	* README: Update documentation of standard set, and add
+	prerequisites.
+
+2011-03-08  Reuben Thomas <rrt@sc3d.org>
+
+	* : commit d10009e099bffb5ac623a27c701f4edebc9a95b6 Author: Reuben
+	Thomas <rrt@sc3d.org> Date:   Tue Mar 8 12:18:36 2011 +0000
+
+2011-03-07  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/posix_ext.lua: Remove posix prefix from function calls.
+
+2011-03-07  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/posix_ext.lua: Add euidaccess.
+
+2011-03-07  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/posix_ext.lua: Improve a comment.
+
+2011-03-07  Reuben Thomas <rrt@sc3d.org>
+
+	* : commit b7059ce9de5fab7810ea50f28fd4e0691df888f8 Author: Reuben
+	Thomas <rrt@sc3d.org> Date:   Mon Mar 7 17:39:29 2011 +0000
+
+2011-03-01  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/list.lua: Reverse order of list methods for convenient OO
+	use.
+
+2011-03-01  Reuben Thomas <rrt@sc3d.org>
+
+	* : Merge from HEAD.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Fix message.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Use package.dirsep once more.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua, modules/modules.lua, modules/package_ext.lua: 
+	Put package.config reflexion into a new package_ext module.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Make message clearer.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Leave dist tarball in source dir, not above.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* .gitignore: Add tarball to .gitignore.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Add sensible access to package.config.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* utils/mk1file: Bump copyright year.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* README: Bump copyright year.
+
+2011-02-26  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Use undocumented package.config to get
+	platform’s directory separator.
+
+2011-02-08  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Improve release target to tag releases.
+
+2011-02-07  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/string_ext.lua: Fix missing math. prefix, and swap
+	incorrect sign in sub. Thanks to Bob Chapman.
+
+2010-12-14  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/math_ext.lua: Speed up math.floor for case where p is 0 or
+	absent (thanks, Lukáš Procházka).
+
+2010-12-09  Reuben Thomas <rrt@sc3d.org>
+
+	* Makefile: Change rules from using CVS to using git.
+
+2010-12-09  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/string_ext.lua: Reinstate string __index metamethod
+	fallback so that OO uses of strings work.  Switch argument order of ltrim, rtrim and trim so they work in OO
+	syntax.
+
+2010-12-09  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/table_ext.lua: Point to tree.clone for deep copies.
+
+2010-10-12  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/string_ext.lua: Restore 'dubious' but used string
+	metamethod fallback.
+
+2010-10-09  Reuben Thomas <rrt@sc3d.org>
+
+	* .cvsignore, .gitignore, modules/.cvsignore, modules/.gitignore: 
+	Move .cvsignore's to .gitignore's.
+
+2010-10-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Fix typo in io.catfile.
+
+2010-10-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/parser.lua: Add commit that seems to be missing from
+	import from CVS.
+
+2010-10-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/posix_ext.lua: Add new posix_ext module.
+
+2010-10-08  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/modules.lua: Add posix_ext to list.
+
+2010-10-08  Reuben Thomas <rrt@sc3d.org>
+
+	* utils/mk1file: Remove spurious full stop.
+
+2010-10-07  Reuben Thomas <rrt@sc3d.org>
+
+	* modules/io_ext.lua: Add catfile and fix catdir to return `/' when
+	necessary.
+
+2010-10-06  Reuben Thomas <rrt@sc3d.org>
+
+	* AUTHORS, Makefile, README, modules/base.lua,
+	modules/debug_ext.lua, modules/getopt.lua, modules/io_ext.lua,
+	modules/lcs.lua, modules/list.lua, modules/math_ext.lua,
+	modules/mbox.lua, modules/modules.lua, modules/object.lua,
+	modules/parser.lua, modules/set.lua, modules/std.lua,
+	modules/strict.lua, modules/string_ext.lua, modules/table_ext.lua,
+	modules/tree.lua, modules/xml.lua, utils/template.lua: Fix
+	permissions.
+
+2010-06-20  rrt <rrt>
+
+	* modules/string_ext.lua: Remove dubious metamethod fallback for
+	string.__index.
+
+2010-06-13  rrt <rrt>
+
+	* modules/tree.lua: Fix and simplify tree.__newindex: there was a
+	variable name typo, and sub-tables should also be initialised to
+	trees, as otherwise the relevant metamethods are not called.
+
+2010-06-13  rrt <rrt>
+
+	* modules/getopt.lua, utils/ldoc: Fix an incompatibility with
+	strict.lua.
+
+2010-06-11  rrt <rrt>
+
+	* modules/base.lua: Simplify nodes iterator and make it more
+	efficient; thanks to Alistair Turnbull for the hint.
+
+2010-06-11  rrt <rrt>
+
+	* modules/base.lua: Simplify, generalise and rename (from treeIter
+	to nodes) tree iterator.
+
+2010-06-10  rrt <rrt>
+
+	* modules/list.lua: Whitespace correction.
+
+2010-06-10  rrt <rrt>
+
+	* modules/table_ext.lua: Simplify implementation of empty, using
+	next as per manual.
+
+2010-06-08  rrt <rrt>
+
+	* modules/base.lua, modules/modules.lua, modules/table_ext.lua,
+	modules/tree.lua: Rename table.subscript to op["[]"], and move
+	table.deepclone and table.lookup into a new module, tree, as the
+	clone method and __index metamethod respectively. The tree module
+	also has a constructor, new, and a __newindex metamethod.  Rename table.newDefault to table.new.
+
+2010-06-08  rrt <rrt>
+
+	* modules/io_ext.lua: Fix writeLine and add an explanatory comment.
+
+2010-06-08  rrt <rrt>
+
+	* modules/set.lua: Make the set metatable a local variable.
+
+2010-06-08  rrt <rrt>
+
+	* modules/modules.lua, modules/strict.lua: Add Lua distribution’s
+	strict.lua to standard modules.
+
+2010-06-08  rrt <rrt>
+
+	* modules/modules.lua, modules/std.lua, utils/mk1file: Have a single
+	list of modules in modules.lua and use it to load them in std.lua
+	and generate the single-file version in mk1file, which latter is now
+	a Lua script.
+
+2010-06-07  rrt <rrt>
+
+	* modules/base.lua, modules/list.lua: Fix list.foldl, list.foldr,
+	and the fold iterator combinator.  Simplify the op table functions to be exactly the primitive
+	operators, not list versions thereof.  (Possibly) improve the commented-out simpler version of treeIter.
+
+2010-06-07  rrt <rrt>
+
+	* modules/table_ext.lua: Remove table.subscripts function: it’s
+	easily replaced by subscript plus string.split, as in its
+	definition.
+
+2010-06-07  rrt <rrt>
+
+	* modules/debug_ext.lua: Initialise _DEBUG to nil so stdlib works
+	with strict.lua.  Rename debug.traceCall to debug.trace (more Lua-ish).  Use math.max rather than just (incorrectly) max.  Improve some documentation.
+
+2010-06-02  rrt <rrt>
+
+	* modules/base.lua: Remove redundant redefinition of print (it
+	already calls tostring).  Fix op table so that base can require list without breaking; fixes
+	FIXME.
+
+2010-06-02  rrt <rrt>
+
+	* modules/std.lua, utils/mk1file: Remove lcs module from std set.  Update FIXME about autogeneration of mk1file to make it more
+	precise.
+
+2010-06-02  rrt <rrt>
+
+	* README: Bump copyright year to 2010.
+
+2010-03-18  rrt <rrt>
+
+	* modules/getopt.lua: Add missing dependency on list.
+
+2009-09-14  rrt <rrt>
+
+	* modules/string_ext.lua: Improve formatting slightly.
+
+2009-09-07  rrt <rrt>
+
+	* utils/ldoc: Avoid using removed function io.changeSuffix.
+
+2009-09-07  rrt <rrt>
+
+	* modules/rex.lua: Remove rex module altogether.
+
+2009-09-07  rrt <rrt>
+
+	* utils/mk1file: Don’t need pcre_rex any more.  Remove FIXME about external dependencies as we no longer have any,
+	nor intend to.
+
+2009-09-07  rrt <rrt>
+
+	* README, modules/std.lua, modules/xml.lua, utils/mk1file: Remove
+	need for rex_pcre in xml.  Remove xml, rex, parser and mbox from standard list of libraries.
+
+2009-09-07  rrt <rrt>
+
+	* README, modules/io_ext.lua, utils/mk1file: Remove dependency on
+	lposix; in the process remove addSuffix and changeSuffix, as they
+	reliedon basename and dirname, and it wasn't worth reimplementing
+	them as they're not used.
+
+2009-09-07  rrt <rrt>
+
+	* modules/string_ext.lua: Add explanatory comment.
+
+2009-08-31  rrt <rrt>
+
+	* utils/mk1file: Add requirement of posix and copyright notice to
+	output.
+
+2009-08-31  rrt <rrt>
+
+	* README: Add lua-posix to list of dependencies.
+
+2009-08-23  rrt <rrt>
+
+	* modules/io_ext.lua: Fix basename and dirname calls
+
+2009-08-23  rrt <rrt>
+
+	* modules/io_ext.lua: Remove basename and dirname as they are now
+	implemented in lposix.  Rename pathConcat to catdir and pathSplitDir to splitdir and make
+	them behave like the corresponding Perl functions.
+
+2009-08-23  rrt <rrt>
+
+	* modules/string_ext.lua: Add FIXME.
+
+2009-03-20  rrt <rrt>
+
+	* modules/math_ext.lua: Use the original _floor in round rather than
+	chaining via floor for a bit of extra speed; thanks to David
+	Kantowitz.
+
+2009-03-16  rrt <rrt>
+
+	* Makefile: Update 'usage' message.
+
+2009-03-16  rrt <rrt>
+
+	* Makefile: Make 'make release' do 'make dist'
+
+2009-03-16  rrt <rrt>
+
+	* modules/base.lua: Simplify assert.
+
+2009-03-15  rrt <rrt>
+
+	* modules/string_ext.lua: Simplify string.format.
+
+2009-03-15  rrt <rrt>
+
+	* modules/io_ext.lua, modules/string_ext.lua: Remove string.join,
+	which is the same as table.concat. Thanks to David Kantowitz for
+	spotting it.
+
+2009-03-14  rrt <rrt>
+
+	* modules/table_ext.lua: Add support for not cloning metatables.
+
+2009-03-13  rrt <rrt>
+
+	* Makefile: Check no outstanding changes and tag release.
+
+2009-03-13  rrt <rrt>
+
+	* AUTHORS: Fix typo.
+
+2009-03-13  rrt <rrt>
+
+	* README: Update copyright year.
+
+2009-03-13  rrt <rrt>
+
+	* Makefile: Fix variable substitution in release target.
+
+2009-03-13  rrt <rrt>
+
+	* .cvsignore: Ignore release-notes-*
+
+2009-03-13  rrt <rrt>
+
+	* Makefile: Add release target, and exclude release notes from
+	tarball.
+
+2009-03-13  rrt <rrt>
+
+	* modules/table_ext.lua: Copy metatables in deepclone, so that it
+	does what it says. Patch from David Kantowitz.
+
+2009-02-19  rrt <rrt>
+
+	* Makefile: Add final newline for neatness.
+
+2009-02-19  rrt <rrt>
+
+	* utils/mk1file: In the single file, make the special "require"
+	function local so that other files can be required after the
+	single-file std.
+
+2009-02-19  rrt <rrt>
+
+	* modules/object.lua: Update object module to correspond with Lua
+	Gems version.
+
+2008-09-04  rrt <rrt>
+
+	* AUTHORS: Fix Diego Nehab's name. Sorry Diego! Thanks to Shmuel
+	Zeigerman for pointing out my error.
+
+2008-09-04  rrt <rrt>
+
+	* Makefile, modules/set.lua: Fix set.difference.  Add set.symmetric_difference.  Make s * t do intersection for sets, and s / t do symmetric
+	difference, as in Modula 3 and (at least for *) "Programming in
+	Lua".
+
+2008-09-03  rrt <rrt>
+
+	* modules/set.lua: Fix equal. Thanks to report from Jiutian Yanling.
+
+2008-07-27  niklas <niklas>
+
+	* modules/base.lua: Cope with nil values in map.
+
+2008-07-27  niklas <niklas>
+
+	* modules/list.lua: Fix elems and relems
+
+2008-07-27  niklas <niklas>
+
+	* Makefile: Fix make dist; $REL -> ${REL}, add --exclude for .#*,
+	and no longer exclude template-rrt.lua, which no longer lives in the
+	tree.
+
+2008-06-20  niklas <niklas>
+
+	* modules/base.lua, modules/list.lua, modules/table_ext.lua: Add
+	collect, from Patrick Walton, to run an iterator and collect the
+	results in a table.  As a result, rewrite all the table functionals to be iterator
+	functionals (in base) and reimplement the list functionals in terms
+	of them. Add two iterators for lists, elems and relems, that return
+	only the elements and not the indices, in order to implement the
+	list functionals.  A couple of old fixes where the Lua 5.1 table count is used (#).  Simplify ripairs slightly.  Fix a comment typo.
+
+2008-03-28  rrt <rrt>
+
+	* modules/getopt.lua: Add some TODOs to make the prog structure a
+	bit more sensible.
+
+2008-03-04  rrt <rrt>
+
+	* modules/io_ext.lua: Make a note to compare pathSplit and
+	pathConcat with Perl equivalents.
+
+2008-03-04  rrt <rrt>
+
+	* utils/ldoc: Add TODO to use LuaDoc instead.
+
+2008-03-03  rrt <rrt>
+
+	* Makefile: Add Makefile with dist target
+
+2008-03-03  rrt <rrt>
+
+	* modules/table_ext.lua: Fix typo in comment.
+
+2008-03-03  rrt <rrt>
+
+	* README, utils/mk1file: No dependency on LFS.
+
+2008-03-03  rrt <rrt>
+
+	* modules/std.lua: No longer have any sort of dependency on bitlib.
+
+2008-03-03  rrt <rrt>
+
+	* modules/io_ext.lua, modules/math_ext.lua: Remove _INTEGER_BITS and
+	unneeded dependency
+
+2008-03-03  rrt <rrt>
+
+	* README: Update date and prerequisites.
+
+2008-03-01  rrt <rrt>
+
+	* utils/mk1file: Require external deps before neutering "require".
+
+2008-03-01  rrt <rrt>
+
+	* modules/std.lua: We may add bit to stdlib, but it's not currently
+	there, nor is it actually used by anything in stdlib.
+
+2008-03-01  rrt <rrt>
+
+	* modules/std.lua: rex is not an external dependency
+
+2008-03-01  rrt <rrt>
+
+	* modules/io_ext.lua: Simplify length function.
+
+2008-03-01  rrt <rrt>
+
+	* modules/io_ext.lua: Use LFS for length() function.
+
+2008-01-19  niklas <niklas>
+
+	* modules/io_ext.lua: Add pathSplit and pathConcat from nancy.
+
+2008-01-12  rrt <rrt>
+
+	* modules/string_ext.lua: Make calls to find and gsub get the
+	function from the pattern, meaning that in theory they could work
+	with other regex engines than Lua's.
+
+2008-01-12  rrt <rrt>
+
+	* modules/string_ext.lua: Remove pointless object notation on a
+	string.
+
+2007-11-19  rrt <rrt>
+
+	* modules/math_ext.lua: Now that INTEGER_BITS is added to the math
+	namespace, no need to prefix it with _.
+
+2007-11-19  rrt <rrt>
+
+	* README: Note that bitlib is needed.
+
+2007-10-06  rrt <rrt>
+
+	* modules/object.lua, modules/table_ext.lua: Rename 'permute' to the
+	more accurate 'rearrange'
+
+2007-10-06  rrt <rrt>
+
+	* modules/object.lua: Update some comments to match changes in the
+	Lua Gem about this code.
+
+2007-10-05  rrt <rrt>
+
+	* modules/table_ext.lua: Fix from Roberto Ierusalimschy.
+
+2007-05-11  rrt <rrt>
+
+	* modules/base.lua, modules/list.lua, modules/rex.lua: Fix up
+	single-file stdlib
+
+2007-05-11  rrt <rrt>
+
+	* modules/getopt.lua: Clarify TODO.
+
+2007-04-26  rrt <rrt>
+
+	* modules/io_ext.lua: Tidy length slightly.
+
+2007-04-26  rrt <rrt>
+
+	* README: Clarify documentation a little further
+
+2007-04-26  rrt <rrt>
+
+	* modules/.cvsignore: Ignore built docs
+
+2007-04-26  rrt <rrt>
+
+	* README: Format prerequisites to allow for more than one! Explain ldoc better.
+
+2007-04-26  rrt <rrt>
+
+	* modules/io_ext.lua: Revert to plain implementation of length to
+	avoid using POSIX library which is currently unmaintained.
+
+2007-04-25  rrt <rrt>
+
+	* modules/debug_ext.lua, modules/object.lua: Clear up uses of old
+	vararg "arg" syntax (thanks Matt).
+
+2007-03-01  rrt <rrt>
+
+	* modules/list.lua: Add list.rep
+
+2007-03-01  rrt <rrt>
+
+	* modules/table_ext.lua: Add FIXME for commented-out require
+
+2007-03-01  rrt <rrt>
+
+	* modules/string_ext.lua: Make join cope with empty lists.
+
+2007-03-01  rrt <rrt>
+
+	* modules/string_ext.lua: Remove default separator in string.split,
+	and hence a TODO.  Add string.join.
+
+2007-02-25  rrt <rrt>
+
+	* README: Mention the dependency on lrexlib.
+
+2007-02-24  rrt <rrt>
+
+	* modules/lcs.lua: Use __append metamethod, not __concat, which was
+	wrong
+
+2007-02-24  rrt <rrt>
+
+	* modules/list.lua: Add __append metamethod and constructor for LCS
+
+2007-02-24  rrt <rrt>
+
+	* modules/string_ext.lua: Add __append metamethod for LCS
+
+2007-02-24  rrt <rrt>
+
+	* modules/set.lua: Set had been left rather broken; fix it up.
+
+2007-02-24  rrt <rrt>
+
+	* modules/list.lua: Remove no-longer-needed LCS method. Thanks to
+	Enrico Tassi for noticing it.
+
+2007-02-22  rrt <rrt>
+
+	* modules/string_ext.lua: Cosmetic changes to finds (comments and a
+	variable rename) for clarity.  Use list.flatten (l) instead of list.concat (unpack (l)) in split to
+	avoid overflowing the parameter stack (with the unpack) when
+	splitting large strings. Clarify the comment for this code.
+
+2007-02-21  rrt <rrt>
+
+	* modules/list.lua: Fix indexKey and indexValue: the function passed
+	to table.process wasn't returning the accumulator as it should have.
+
+2007-02-20  rrt <rrt>
+
+	* modules/list.lua: Make a note to find better names for enpair and
+	depair, which are useful but confusing. Something like pairsToTable
+	and tableToPairs?
+
+2007-01-26  rrt <rrt>
+
+	* modules/io_ext.lua: Add missing dirname and basename
+
+2007-01-05  rrt <rrt>
+
+	* README: Sync with reality.
+
+2007-01-04  rrt <rrt>
+
+	* modules/rex.lua: Document.  Set rex = rex_pcre, so that we actually have the functions we expect
+	under "rex".
+
+2007-01-04  rrt <rrt>
+
+	* modules/rex.lua: Now that lrexlib no longer has a Lua component or
+	a default library, add a library to load it (currently just require
+	rex_pcre).
+
+2006-12-06  rrt <rrt>
+
+	* modules/string_ext.lua: Remove TODOs that apply to lrexlib.
+
+2006-11-27  rrt <rrt>
+
+	* modules/getopt.lua, modules/list.lua: Use non-list-capable
+	math.max correctly
+
+2006-11-20  rrt <rrt>
+
+	* modules/string_ext.lua: Fix from Jerôme Vuarand to string
+	subscription that deals with oldmetas that are functions.
+
+2006-11-08  rrt <rrt>
+
+	* modules/string_ext.lua: Stop string subscription operator from
+	hiding other methods.
+
+2006-11-05  rrt <rrt>
+
+	* modules/std.lua: Note that rex is now an external dependency.
+
+2006-11-05  rrt <rrt>
+
+	* utils/mk1file: Note problem with external dependencies.
+
+2006-11-05  rrt <rrt>
+
+	* modules/debug_ext.lua, modules/set.lua: Sort out adding to module
+	metatables.
+
+2006-11-05  rrt <rrt>
+
+	* modules/io_ext.lua: Add a FIXME
+
+2006-11-05  rrt <rrt>
+
+	* modules/lcs.lua, modules/string_ext.lua: As 5.1 has all the
+	metamethods we need, rewrite LCS to use them.  Hence, no need for
+	wrapper string.lcs.  Remove named string concat, need for which is mostly obviated by
+	concat metamethod.
+
+2006-11-05  rrt <rrt>
+
+	* modules/std.lua: Remove @module from list of tags to add, as we
+	already have it.
+
+2006-11-05  rrt <rrt>
+
+	* AUTHORS: Clarify Reuben's role.
+
+2006-11-05  rrt <rrt>
+
+	* modules/rex.lua: Remove rex.lua, now imported from lrexlib
+
+2006-11-05  rrt <rrt>
+
+	* modules/std.lua: No longer need to lift std modules into global
+	environment as they are already there.
+
+2006-11-05  rrt <rrt>
+
+	* utils/mk1file: Remove std/ prefix for module files, and no longer
+	include std.lua, which does nothing.
+
+2006-11-05  rrt <rrt>
+
+	* modules/base.lua, modules/debug_ext.lua, modules/getopt.lua,
+	modules/io_ext.lua, modules/lcs.lua, modules/list.lua,
+	modules/math_ext.lua, modules/mbox.lua, modules/object.lua,
+	modules/parser.lua, modules/rex.lua, modules/set.lua,
+	modules/std.lua, modules/std/base.lua, modules/std/debug.lua,
+	modules/std/getopt.lua, modules/std/io.lua, modules/std/lcs.lua,
+	modules/std/list.lua, modules/std/math.lua, modules/std/mbox.lua,
+	modules/std/object.lua, modules/std/parser.lua,
+	modules/std/rex.lua, modules/std/set.lua, modules/std/string.lua,
+	modules/std/table.lua, modules/std/xml.lua, modules/string_ext.lua,
+	modules/table_ext.lua, modules/xml.lua: Remove std directory, having
+	all modules at the root, and with root names (no "std." prefix), so
+	that stdlib can rely on external libraries, and the namespace is
+	simplified.
+
+2006-11-05  rrt <rrt>
+
+	* modules/std.lua, utils/mk1file: file.lua is no more
+
+2006-11-05  rrt <rrt>
+
+	* modules/std/file.lua, modules/std/io.lua: Rewrite io.length using
+	posix.stat and move it to io.lua.
+
+2006-11-05  rrt <rrt>
+
+	* modules/std/string.lua: Move TODO from rex.lua
+
+2006-11-03  rrt <rrt>
+
+	* utils/mk1file: No longer mention defunct bit.lua.
+
+2006-11-03  rrt <rrt>
+
+	* modules/std.lua, modules/std/base.lua, modules/std/bit.lua,
+	modules/std/math.lua: Remove listable and listabled functions. This
+	wasn't really that useful, and could confuse.
+
+2006-11-01  rrt <rrt>
+
+	* modules/std/rex.lua, modules/std/string.lua: Correct @function to
+	@func
+
+2006-11-01  rrt <rrt>
+
+	* utils/ldoc: Really cope with multiple params under a single
+	@param.
+
+2006-11-01  rrt <rrt>
+
+	* utils/template.lua: Add template for std-using scripts.
+
+2006-11-01  rrt <rrt>
+
+	* modules/std/rex.lua: Clarify gmatch metamethod
+
+2006-11-01  rrt <rrt>
+
+	* utils/ldoc: Cope with multiple params under a single @param, by
+	insisting on the : at the end.
+
+2006-10-30  rrt <rrt>
+
+	* modules/std/list.lua: Fix list.concat (thanks to Avi Yagodnick for
+	reporting the bug).
+
+2006-10-28  niklas <niklas>
+
+	* modules/std/assert.lua, modules/std/base.lua,
+	modules/std/debug.lua, modules/std/file.lua,
+	modules/std/getopt.lua, modules/std/io.lua, modules/std/lcs.lua,
+	modules/std/list.lua, modules/std/math.lua, modules/std/rex.lua,
+	modules/std/set.lua, modules/std/string.lua, modules/std/table.lua,
+	utils/mk1file: Remove require loops by commenting out looping
+	requires. This needs fixing properly (by permitting them).  Where possible without further change, remove the "std" prefix from
+	module declarations.  Where possible, remove module prefixes from function definitions.  Use ... in more places.  Move pathSubscript to table.lua.  Move assert.lua's contents to base.lua (we can't have a module
+	called assert, and this is in the base library in any case).  Move function forms of operators to base.lua.  Make headings of modules consistent (add @module lines).  Remove io.exists, as it's dodgy, and posix.stat is much better.
+	Lighterweight environments are probably going to roll their own
+	anyway.  Remove "zip" and "unzip" aliases for list.transpose. Add a note to
+	the documentation instead.  In io.lua, remove some io. prefixes (that don't make the code less
+	clear) as we're already in io, and instead prefix type with _G
+	(oops, that's ugly).  Improve changeSuffix, and make it use posix.dirname and
+	posix.basename.  Add two functions to list module: flatten and shape, to flatten and
+	reshape arbitrarily nested lists.  Add a paragraph of documentation to the top of the rex module in
+	preparation for lrexlib 1.20 (rex.lua will leave stdlib and move to
+	lrexlib).  Add rex.gmatch (as well as adding a metatable method for rex
+	objects).  Update set.lua to current practices, including the (still
+	commented-out) metamethods.  Probable bug-fixing in string module obscured by removal of string.
+	prefix from function definitions and calls.  Make redefinitions of existing functions more consistent, and fix
+	some faulty ones.  Add deepclone to table from Jamie Webb's code.
+
+2006-10-08  rrt <rrt>
+
+	* utils/ldoc: Update to match stdlib. Remove revision history as
+	it's in CVS, and replace version number with CVS Revision tag.
+
+2006-10-08  rrt <rrt>
+
+	* modules/std/base.lua, modules/std/getopt.lua, modules/std/io.lua,
+	modules/std/list.lua, modules/std/string.lua, modules/std/xml.lua: 
+	table.getn --> #
+
+2006-09-30  rrt <rrt>
+
+	* modules/std/file.lua: Remove io.readDir, as it is replaced by
+	posix.dir.
+
+2006-09-30  rrt <rrt>
+
+	* modules/std/file.lua: Remove io.dirname, as it is replaced by
+	posix.dirname.
+
+2006-09-30  rrt <rrt>
+
+	* modules/std/io.lua: Fix changeSuffix to work with paths containing
+	dots by only operating on basename, not the whole file name.
+
+2006-09-18  rrt <rrt>
+
+	* utils/mk1file: Fix ordering of deps
+
+2006-07-14  rrt <rrt>
+
+	* modules/std/string.lua: Escape quotes and apostrophes in
+	string.escapeShell.
+
+2006-07-14  rrt <rrt>
+
+	* modules/std/string.lua: Escape square brackets too in
+	string.escapeShell.
+
+2006-04-25  rrt <rrt>
+
+	* utils/mk1file: Prepend redefinition of require to the output.
+
+2006-04-25  rrt <rrt>
+
+	* modules/std/string.lua: Use string methods rather than functions
+	so that the functions here work on regexs as well. Add a note to
+	make the whole API work properly with regexs as well as Lua
+	patterns.
+
+2006-04-25  rrt <rrt>
+
+	* modules/std/file.lua: Add TODO
+
+2006-04-25  rrt <rrt>
+
+	* modules/std/getopt.lua: Reformat and improve comments.
+
+2006-04-24  rrt <rrt>
+
+	* modules/std/rex.lua: Simplify assignment of retry.
+
+2006-04-24  rrt <rrt>
+
+	* modules/std/table.lua: Correct name of table.filterItem (was
+	table.mapItem).
+
+2006-04-15  rrt <rrt>
+
+	* modules/std/rex.lua: Reformat.
+
+2006-04-15  rrt <rrt>
+
+	* modules/std/rex.lua: Use variadic bit.or.
+
+2006-04-15  rrt <rrt>
+
+	* modules/std/list.lua, modules/std/table.lua: Add table.filter and
+	table.filterItem. Add list.filterItem and implement list.filter in
+	terms of it.
+
+2006-04-15  rrt <rrt>
+
+	* modules/std/rex.lua: Fix more bugs, patch from Shmuel Zeigerman.  Call rex:flags() to inject flags into rex table.
+
+2006-04-15  rrt <rrt>
+
+	* modules/std/rex.lua: Remove unnecessary local line from gmatch,
+	and initialise st to 1, not 0 (thanks to Shmuel Zeigerman).
+
+2006-04-09  rrt <rrt>
+
+	* README, modules/assert_ext.lua, modules/base_ext.lua,
+	modules/bit_ext.lua, modules/debug_ext.lua, modules/file.lua,
+	modules/getopt.lua, modules/io_ext.lua, modules/lcs.lua,
+	modules/list.lua, modules/math_ext.lua, modules/mbox.lua,
+	modules/object.lua, modules/parser.lua, modules/rex_ext.lua,
+	modules/set.lua, modules/std.lua, modules/std/assert.lua,
+	modules/std/base.lua, modules/std/bit.lua, modules/std/debug.lua,
+	modules/std/file.lua, modules/std/getopt.lua, modules/std/io.lua,
+	modules/std/lcs.lua, modules/std/list.lua, modules/std/math.lua,
+	modules/std/mbox.lua, modules/std/object.lua,
+	modules/std/parser.lua, modules/std/rex.lua, modules/std/set.lua,
+	modules/std/string.lua, modules/std/table.lua, modules/std/xml.lua,
+	modules/string_ext.lua, modules/table_ext.lua, modules/xml.lua,
+	utils/mk1file: Reorganise libraries with simpler names
+
+2006-04-09  rrt <rrt>
+
+	* modules/base_ext.lua, modules/debug_ext.lua, modules/rex_ext.lua,
+	modules/string/formatting.lua, modules/string/regex.lua,
+	modules/string/string.lua, modules/string_ext.lua, utils/mk1file: 
+	Move all modules out of string
+
+2006-04-09  rrt <rrt>
+
+	* README: Reflect simplified structure
+
+2006-04-09  rrt <rrt>
+
+	* modules/assert_ext.lua, modules/debug_ext.lua, modules/file.lua,
+	modules/getopt.lua, modules/io/env.lua, modules/io/file.lua,
+	modules/io/io.lua, modules/io_ext.lua, modules/parser.lua,
+	modules/std.lua, modules/xml.lua, utils/mk1file: Move all modules
+	out of io
+
+2006-04-09  rrt <rrt>
+
+	* modules/getopt.lua, modules/io/getopt.lua, modules/io_ext.lua,
+	modules/std.lua, utils/mk1file: Rename io.getopt to getopt
+
+2006-04-09  rrt <rrt>
+
+	* modules/std.lua, modules/string/xml.lua, modules/string_ext.lua,
+	modules/xml.lua: Rename string.xml to xml
+
+2006-04-09  rrt <rrt>
+
+	* utils/mk1file: Add utility to make a single file stdlib
+
+2006-04-09  rrt <rrt>
+
+	* utils/ldoc: Use env to run script and reverse Changelog order
+
+2006-04-09  rrt <rrt>
+
+	* modules/algorithm.lua, modules/algorithm/lcs.lua,
+	modules/lcs.lua, modules/std.lua, modules/string/string.lua: Rename
+	algorithm.lcs to lcs
+
+2006-04-09  rrt <rrt>
+
+	* modules/io/file.lua, modules/string/regex.lua: Rewrite
+	string.split to be regex-system-neutral.  Change string.findl to return from and to in list form, not {from =
+	f, to = t}.  Update string.regex to Lua 5.1 vararg syntax.  Make io.exists use stat if available.  Add io.dirname.
+
+2006-04-09  rrt <rrt>
+
+	* modules/rex_ext.lua: Update Lua code from Shmuel's version and
+	write gmatch in Lua.
+
+2006-04-09  rrt <rrt>
+
+	* modules/list.lua: Update concat to Lua 5.1 vararg syntax.  Remove flatten alias for concat, as concat doesn't flatten.
+
+2006-04-09  rrt <rrt>
+
+	* modules/base_ext.lua: Update to 5.1 vararg syntax
+
+2006-03-30  rrt <rrt>
+
+	* modules/string/regex.lua: string.gfind is now string.gmatch.
+
+2006-03-30  rrt <rrt>
+
+	* modules/rex_ext.lua: Reactivate tests, but make them conditional
+	on running in debug mode.
+
+2006-03-30  rrt <rrt>
+
+	* README: Improve installation instructions.
+
+2006-03-30  rrt <rrt>
+
+	* README: Fix mailing list address.
+
+2006-03-30  rrt <rrt>
+
+	* README: Update to match reality.
+
+2006-03-29  rrt <rrt>
+
+	* modules/io/getopt.lua: Fix handling of global arg table.
+
+2006-03-29  rrt <rrt>
+
+	* modules/assert_ext.lua: Use new form of message-less error.
+
+2006-03-29  rrt <rrt>
+
+	* modules/bit_ext.lua, modules/rex_ext.lua, modules/std.lua: Deal
+	with C modules like Lua modules.
+
+2006-03-29  rrt <rrt>
+
+	* AUTHORS: Don't mention require for Lua 4 any more.
+
+2006-03-29  rrt <rrt>
+
+	* modules/assert-ext.lua, modules/assert_ext.lua,
+	modules/base-ext.lua, modules/base_ext.lua, modules/bit-ext.lua,
+	modules/bit_ext.lua, modules/debug-ext.lua, modules/debug_ext.lua,
+	modules/io-ext.lua, modules/io/file.lua, modules/io/getopt.lua,
+	modules/io/io.lua, modules/io_ext.lua, modules/list.lua,
+	modules/math-ext.lua, modules/math_ext.lua, modules/object.lua,
+	modules/rex-ext.lua, modules/rex_ext.lua, modules/set.lua,
+	modules/std.lua, modules/string-ext.lua,
+	modules/string/formatting.lua, modules/string/xml.lua,
+	modules/string_ext.lua, modules/table-ext.lua,
+	modules/table_ext.lua: Rename modules *-ext to *_ext to avoid
+	problem with version number parser in require.
+
+2006-03-28  rrt <rrt>
+
+	* modules/assert-ext.lua, modules/base-ext.lua, modules/object.lua: 
+	Simplify adding functions to global table.
+
+2006-03-28  rrt <rrt>
+
+	* modules/algorithm.lua, modules/algorithm/lcs.lua,
+	modules/assert-ext.lua, modules/assert.lua, modules/base-ext.lua,
+	modules/debug-ext.lua, modules/io-ext.lua, modules/io/env.lua,
+	modules/io/file.lua, modules/io/getopt.lua, modules/io/io.lua,
+	modules/math-ext.lua, modules/mbox.lua, modules/object.lua,
+	modules/parser.lua, modules/rex-ext.lua, modules/set.lua,
+	modules/std.lua, modules/string-ext.lua, modules/string/format.lua,
+	modules/string/formatting.lua, modules/string/regex.lua,
+	modules/string/string.lua, modules/string/xml.lua,
+	modules/table-ext.lua: Add module calls everywhere, and do some
+	necessary renaming to avoid clashes
+
+2006-03-22  rrt <rrt>
+
+	* modules/algorithm.lua, modules/algorithm/lcs.lua,
+	modules/assert.lua, modules/base-ext.lua, modules/bit-ext.lua,
+	modules/debug-ext.lua, modules/io-ext.lua, modules/io/env.lua,
+	modules/io/file.lua, modules/io/getopt.lua, modules/io/io.lua,
+	modules/list.lua, modules/math-ext.lua, modules/mbox.lua,
+	modules/object.lua, modules/parser.lua, modules/rex-ext.lua,
+	modules/set.lua, modules/std.lua, modules/std/algorithm.lua,
+	modules/std/algorithm/lcs.lua, modules/std/assert.lua,
+	modules/std/base.lua, modules/std/bit.lua, modules/std/debug.lua,
+	modules/std/io.lua, modules/std/io/env.lua,
+	modules/std/io/file.lua, modules/std/io/getopt.lua,
+	modules/std/io/io.lua, modules/std/list.lua, modules/std/math.lua,
+	modules/std/mbox.lua, modules/std/object.lua,
+	modules/std/parser.lua, modules/std/rex.lua, modules/std/set.lua,
+	modules/std/string.lua, modules/std/string/format.lua,
+	modules/std/string/regex.lua, modules/std/string/string.lua,
+	modules/std/string/xml.lua, modules/std/table.lua,
+	modules/string-ext.lua, modules/string/format.lua,
+	modules/string/regex.lua, modules/string/string.lua,
+	modules/string/xml.lua, modules/table-ext.lua: Use module and
+	require in properly 5.1-compatible way, and change module names to
+	work better with 5.1.  This should all still work fine with 5.0 using compat-5.1.lua.
+
+2006-02-03  rrt <rrt>
+
+	* modules/std/rex.lua: More fixes and tests from Shmuel Zeigerman.
+
+2006-01-28  rrt <rrt>
+
+	* modules/std/rex.lua: Add tests from Shmuel Zeigerman, reorganised
+	somewhat. They are run when the module is loaded.
+
+2006-01-28  rrt <rrt>
+
+	* modules/std/rex.lua: Rename sub to cap for clarity (Shmuel
+	Zeigerman).
+
+2006-01-26  rrt <rrt>
+
+	* modules/std/rex.lua: More fixes from Shmuel to mimic string.gsub
+	better.
+
+2006-01-24  rrt <rrt>
+
+	* modules/std/rex.lua: Fix endless loop when pattern is .* (bug
+	reported by Shmuel Zeigerman).
+
+2006-01-24  rrt <rrt>
+
+	* modules/std/rex.lua: Cope with capture being false (Shmuel
+	Zeigerman).
+
+2006-01-24  rrt <rrt>
+
+	* modules/std/rex.lua: Fix bug when n == 0 (thanks Shmuel
+	Zeigerman), and tidy up.
+
+2006-01-23  rrt <rrt>
+
+	* modules/std/rex.lua: Fix from Shmuel Zeigerman to match
+	string.gsub better: when the pattern contains no captures, pass the
+	entire match to the replacement function.
+
+2006-01-21  rrt <rrt>
+
+	* modules/std/rex.lua: More bug fixes; thanks to Shmuel Zeigerman
+	for reporting the bugs and in one case giving the fix.
+
+2006-01-21  rrt <rrt>
+
+	* modules/std/rex.lua: Fix bugs with %n replacements in rex.gsub
+
+2006-01-21  rrt <rrt>
+
+	* modules/std/rex.lua: Make rex.gsub a full gsub for rex.
+
+2006-01-19  rrt <rrt>
+
+	* modules/std/string/xml.lua: Don't escape & in entities
+
+2006-01-19  rrt <rrt>
+
+	* modules/std/rex.lua: Improve rex.gsub
+
+2006-01-16  rrt <rrt>
+
+	* modules/std/string/xml.lua: Escape <, > and & in XML output.
+
+2005-11-23  rrt <rrt>
+
+	* modules/std/base.lua: Replace deepipairs with treeIter to iterate
+	properly over trees.
+
+2005-11-22  rrt <rrt>
+
+	* modules/std/list.lua, modules/std/table.lua: Remove
+	table.filterItem, as it really only works for lists. Inline the
+	function in list.filter.  Add table.map.
+
+2005-11-22  rrt <rrt>
+
+	* modules/std/string.lua, modules/std/string/xml.lua: Add XML
+	output, assuming Lua tables created by luaexpat.
+
+2005-11-21  rrt <rrt>
+
+	* modules/std/base.lua: Add generic printing framework, and use it
+	to add prettytostring.
+
+2005-11-18  rrt <rrt>
+
+	* modules/std/list.lua: Use table.process to implement list
+	processing functions.
+
+2005-11-18  rrt <rrt>
+
+	* modules/std/table.lua: Add generic table-processing function
+	table.process and action functions for map, filter &c.
+
+2005-11-18  rrt <rrt>
+
+	* modules/std/base.lua: Add two iterators: ripairs which is like
+	ipairs, but in reverse, and deepipairs, which recurses into nested
+	tables.
+
+2005-11-09  rrt <rrt>
+
+	* modules/std.lua, modules/std/import.lua: Remove import.
+
+2005-11-09  rrt <rrt>
+
+	* README: Update year to 2005.
+
+2005-11-09  rrt <rrt>
+
+	* AUTHORS: import has been removed.
+
+2005-11-09  rrt <rrt>
+
+	* utils/ldoc: Fix bogus version in history
+
+2005-11-09  rrt <rrt>
+
+	* modules/std.algorithm.lcs.lua, modules/std.algorithm.lua,
+	modules/std.assert.lua, modules/std.base.lua, modules/std.bit.lua,
+	modules/std.debug.lua, modules/std.import.lua,
+	modules/std.io.env.lua, modules/std.io.file.lua,
+	modules/std.io.getopt.lua, modules/std.io.io.lua,
+	modules/std.io.lua, modules/std.list.lua, modules/std.lua,
+	modules/std.math.lua, modules/std.mbox.lua, modules/std.object.lua,
+	modules/std.parser.lua, modules/std.rex.lua, modules/std.set.lua,
+	modules/std.string.format.lua, modules/std.string.lua,
+	modules/std.string.regex.lua, modules/std.string.string.lua,
+	modules/std.table.lua, modules/std/algorithm.lua,
+	modules/std/algorithm/lcs.lua, modules/std/assert.lua,
+	modules/std/base.lua, modules/std/bit.lua, modules/std/debug.lua,
+	modules/std/import.lua, modules/std/io.lua, modules/std/io/env.lua,
+	modules/std/io/file.lua, modules/std/io/getopt.lua,
+	modules/std/io/io.lua, modules/std/list.lua, modules/std/math.lua,
+	modules/std/mbox.lua, modules/std/object.lua,
+	modules/std/parser.lua, modules/std/rex.lua, modules/std/set.lua,
+	modules/std/string.lua, modules/std/string/format.lua,
+	modules/std/string/regex.lua, modules/std/string/string.lua,
+	modules/std/table.lua: Remove import, and instead use 5.1-style
+	require (tested with compat-5.1.lua).  Assume a LUA_DIR of "/", hence rename files accordingly.
+
+2005-09-03  rrt <rrt>
+
+	* modules/std.string.regex.lua: Fix string.ltrim and string.rtrim to
+	return only the advertised return value.  Fix string.trim to do what it says on the tin; it was completely
+	broken.
+
+2004-09-08  rrt <rrt>
+
+	* modules/std.assert.lua: Fix assert when called with only one
+	argument: arg has the value {n=0} when there are no variadic
+	arguments, not nil as I assumed.
+
+2004-02-17  rrt <rrt>
+
+	* modules/std.parser.lua: Comment the constructor.
+
+2004-02-17  rrt <rrt>
+
+	* modules/std.import.lua: Check error return when loading file, so
+	that if file is not found we don't abort immediately so that all
+	LUA_PATH entries are checked.
+
+2004-02-04  rrt <rrt>
+
+	* modules/std.parser.lua: Tidy up abstract syntax rules: there's now
+	only one per production.  Keep action functions for more complex rules. Looks as though we
+	only ever have one or the other (because simple rules don't take
+	into account any housekeeping info) so perhaps simplify this again.  Make lists not have a ty field, but just be lists of whatever they
+	contain.  Return false instead of nil for empty parse trees, so as not to
+	upset ipairs iterations over lists.
+
+2004-02-04  rrt <rrt>
+
+	* modules/std.mbox.lua: Tidy up the code, mostly by shortening the
+	names of frequently-used variables.
+
+2004-02-04  rrt <rrt>
+
+	* modules/std.import.lua: Allow import to report errors during
+	importing.
+
+2004-02-03  rrt <rrt>
+
+	* AUTHORS: Added Diego Nahab for his mbox parser.
+
+2004-02-03  rrt <rrt>
+
+	* modules/std.lua, modules/std.mbox.lua: Added Diego Nahab's mbox
+	parser.
+
+2004-02-03  rrt <rrt>
+
+	* modules/std.parser.lua: Rework the API: now has a single method
+	exposed, parse, and the other methods have been moved inside parse
+	as local functions. The constructor no longer takes a token list.  Also, provide support for producing an abstract parse tree rather
+	than the (default) concrete one.  Full details in the all-new documentation.
+
+2004-02-03  rrt <rrt>
+
+	* modules/std.lua: Clarify note about import and add TODO about
+	markup tags.
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.set.lua: Massacre the object implementation, reverting
+	to implementing sets as simple tables, which seems to be better for
+	general use. A lot of the code in this file is now non-functional;
+	I'll be making it work later, integrating it with Jamie Webb's code.
+	The module may get folded back into table.
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.list.lua: Make list.map and list.filter work on lists
+	that have nil elements.
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.debug.lua: Fix __call metamethod.
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.debug.lua: writeLine -> io.writeLine
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.io.io.lua: Fix io.writeLine (somehow two lines had
+	become swapped).
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.parser.lua: writeLine -> io.writeLine
+
+2004-02-01  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.list.lua,
+	modules/std.string.regex.lua, modules/std.string.string.lua,
+	modules/std.table.lua: Various modifications prompted by Jamie
+	Webb's submission of his own standard library. So far I have
+	assimilated improvements that map directly on to existing code, and
+	also removed some functions that didn't seem to be that useful.
+	Looking at the code again provoked other miscellaneous improvements.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.io.env.lua: In the previous commit, which had a bogus
+	log message, I fixed io.readDir: split --> string.split.  In this one, I improved the formatting of io.readDir slightly.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.object.lua: Improve spacing of comments.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.io.getopt.lua: If -version is given and no
+	command-line args, then terminate after showing the version message.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.lua: Explain that although import is used internally,
+	users should use require (as in README) and why.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.bit.lua: Removed bit._INTEGER_BITS, because it's the
+	same as math._INTEGER_BITS. I suspect I meant to do this ages ago.
+
+2004-01-31  rrt <rrt>
+
+	* AUTHORS: Added a few more people I thought of.
+
+2004-01-31  rrt <rrt>
+
+	* AUTHORS, README: Formalise the README: this project is no longer
+	just mine.  Add a list of AUTHORS: the first contributions have arrived.
+
+2004-01-31  rrt <rrt>
+
+	* utils/mkdist: This script was trivial and wrong.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.math.lua: Added math.floor and math.round, based on
+	code from Johann Hibschman.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.io.env.lua: Add math.floor and math.round, based on
+	code from Johann Hibschman.
+
+2004-01-31  rrt <rrt>
+
+	* modules/std.base.lua: Fix pickle: format->string.format (thanks to
+	Johann Hibschman).
+
+2004-01-28  rrt <rrt>
+
+	* modules/std.list.lua: Default the from and to parameters of
+	list.slice to the start and end of the list respectively.
+
+2004-01-28  rrt <rrt>
+
+	* modules/std.lua: Add primitive way to cope with missing
+	non-standard C libraries, and a TODO to deal with missing C
+	libraries properly.
+
+2004-01-28  rrt <rrt>
+
+	* modules/std.table.lua: Fix table.newDefault to use correct name
+	for __index metamethod.
+
+2004-01-28  rrt <rrt>
+
+	* modules/std.bit.lua: Improve module description in first line.
+
+2004-01-28  rrt <rrt>
+
+	* modules/std.base.lua: Fix tostring to work on self-referential
+	tables.
+
+2004-01-27  rrt <rrt>
+
+	* modules/std.algorithm.lcs.lua: Corrected misnaming of functions
+	and added documentation.
+
+2004-01-26  rrt <rrt>
+
+	* modules/std.string.format.lua: Add string.format extension to make
+	it not try to format if there is only one argument.
+
+2004-01-25  rrt <rrt>
+
+	* utils/ldoc: Update to Lua 5. This is an old change which I forgot
+	to check in; ldoc is *not* the way forward for stdlib documentation.
+	This checkin is just for completeness.
+
+2004-01-10  rrt <rrt>
+
+	* modules/std.string.format.lua: [no log message]
+
+2004-01-10  rrt <rrt>
+
+	* modules/std.algorithm.lcs.lua, modules/std.algorithm.lua,
+	modules/std.assert.lua, modules/std.base.lua, modules/std.bit.lua,
+	modules/std.debug.lua, modules/std.io.env.lua,
+	modules/std.io.file.lua, modules/std.io.getopt.lua,
+	modules/std.io.io.lua, modules/std.list.lua, modules/std.lua,
+	modules/std.math.lua, modules/std.object.lua,
+	modules/std.parser.lua, modules/std.set.lua,
+	modules/std.string.format.lua, modules/std.string.regex.lua,
+	modules/std.string.string.lua, modules/std.table.lua: Change
+	"returns" lines to "@returns" for better LuaDoc-ness.  Add string.tonumbersi.  Minor corrections and LuaDocification of some other comments.
+
+2003-10-22  rrt <rrt>
+
+	* modules/std.io.getopt.lua, modules/std.lua,
+	modules/std.string.format.lua, modules/std.table.lua: More Lua 5
+	tweaks, and a couple of minor bugfixes.
+
+2003-10-20  rrt <rrt>
+
+	* modules/std.import, modules/std.import.lua: Oops; added file with
+	incorrect name; re-add with correct name.
+
+2003-10-20  rrt <rrt>
+
+	* modules/std.algorithm.lua, modules/std.assert.lua,
+	modules/std.base.lua, modules/std.bit.lua, modules/std.debug.lua,
+	modules/std.import, modules/std.io.env.lua,
+	modules/std.io.file.lua, modules/std.io.getopt.lua,
+	modules/std.io.io.lua, modules/std.io.lua, modules/std.list.lua,
+	modules/std.lua, modules/std.math.lua, modules/std.object.lua,
+	modules/std.parser.lua, modules/std.set.lua,
+	modules/std.string.format.lua, modules/std.string.lua,
+	modules/std.string.regex.lua, modules/std.string.string.lua: Add
+	"import" from LTN 11 to overcome require's problem with circular
+	dependencies.  Remove string.next, as string.gfind provides an equivalent iterator.
+
+2003-10-20  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.data.lua,
+	modules/std.data.macro.lua, modules/std.data.parse.lua,
+	modules/std.data.set.lua, modules/std.list.lua, modules/std.lua: 
+	More renaming for consistency, and move more code around. This
+	introduced the first cyclic dependency between modules since I moved
+	to Lua 5, and I've had to cure this with a C include-style trick,
+	since Lua 5 require just overflows the stack when there's a
+	recursive call of require.
+
+2003-10-19  rrt <rrt>
+
+	* modules/std.data.set.lua: Add an iterator for the values in a set,
+	and use it; methods are now organised into those that access the
+	data structure and those that call other methods.
+
+2003-10-19  rrt <rrt>
+
+	* modules/std.data.set.lua: Objectify the implementation, and add
+	LuaDoc-style markup to the comments.
+
+2003-10-19  rrt <rrt>
+
+	* modules/std.object.lua: Write methods outside object prototype
+	(i.e. in more consistent form for stdlib).
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.bit.lua, modules/std.data.logic.lua,
+	modules/std.data.lua, modules/std.lua: Rename std.data.logic to
+	std.bit, as it extends the C bit library.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.data.logic.lua, modules/std.data.macro.lua,
+	modules/std.debug.lua, modules/std.io.getopt.lua,
+	modules/std.list.lua, modules/std.lua, modules/std.math.lua: Make a
+	namespace for list routines.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.base.lua: Fix bug in curry properly.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.io.io.lua, modules/std.lua: Finish renaming in io.io.
+	Update TODO for getopt in std.lua.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.data.logic.lua, modules/std.data.lua: Re-add
+	mistakenly removed logic (I confused the ability to take multiple
+	args with the ability to take lists).
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.assert.lua, modules/std.math.lua: assert lives again!
+	math added to hold math function extensions.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.data.logic.lua,
+	modules/std.data.lua, modules/std.list.lua, modules/std.lua,
+	modules/std.string.format.lua, modules/std.table.lua: Remove logic
+	(no longer needed; _INTEGER_BITS moved to math, band &c.  already
+	work on lists).  Various other movements and renaming of modules.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.data.code.lua: Routines moves to std.list and
+	std.base.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.data.code.lua,
+	modules/std.data.logic.lua, modules/std.data.lua,
+	modules/std.io.io.lua, modules/std.list.lua, modules/std.table.lua: 
+	More renaming.  Remove boolean routines for when bitlib is not
+	present. There's no excuse in Lua 5!
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.data.parse.lua,
+	modules/std.data.set.lua, modules/std.io.env.lua,
+	modules/std.io.getopt.lua, modules/std.io.io.lua,
+	modules/std.list.lua: Use ipairs instead of table.getn loops.
+
+2003-10-18  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.data.set.lua,
+	modules/std.io.getopt.lua, modules/std.list.lua,
+	modules/std.string.regex.lua, modules/std.table.lua: Use pairs ()
+	instead of deprecated for "i, v in t" form.
+
+2003-10-17  rrt <rrt>
+
+	* modules/std.data.code.lua, modules/std.data.set.lua,
+	modules/std.object.lua, modules/std.table.lua: Rename table
+	routines.  Simplify compose.
+
+2003-10-17  rrt <rrt>
+
+	* modules/std.base.lua, modules/std.data.list.lua,
+	modules/std.data.lua, modules/std.data.macro.lua,
+	modules/std.data.object.lua, modules/std.data.parse.lua,
+	modules/std.data.set.lua, modules/std.data.table.lua,
+	modules/std.io.env.lua, modules/std.io.getopt.lua,
+	modules/std.list.lua, modules/std.lua, modules/std.object.lua,
+	modules/std.table.lua: Renamed some libraries for Lua 5-ification
+	reasons.
+
+2003-10-17  rrt <rrt>
+
+	* modules/std.data.list.lua, modules/std.string.string.lua: Fix a
+	minor bug and remove some debugging code.
+
+2003-10-17  rrt <rrt>
+
+	* modules/std.algorithm.lcs.lua, modules/std.algorithm.lua,
+	modules/std.base.lua, modules/std.data.code.lua,
+	modules/std.data.object.lua, modules/std.data.table.lua,
+	modules/std.lua, modules/std.string.string.lua: A new module (and
+	family): algorithm, with first member algorithm.lcs, which
+	implements the longest common subsequence algorithm needed for diff.  std.object has been reworked, and now fits much better with Lua 5,
+	although the interface to it is pretty much the same as before.  Some other Lua 5-isation has been done, but not much; there's still
+	a lot left to do in std.data in particular.
+
+2003-10-13  rrt <rrt>
+
+	* modules/std.base.lua: Fix call to writeLine (now io.writeLine).
+
+2003-09-27  rrt <rrt>
+
+	* modules/std.assert.lua, modules/std.base.lua,
+	modules/std.debug.lua, modules/std.io.env.lua,
+	modules/std.io.file.lua, modules/std.io.getopt.lua,
+	modules/std.io.io.lua, modules/std.lua,
+	modules/std.string.format.lua: More Lua 5-ification changes, mostly
+	to the io modules this time.
+
+2003-09-25  uid30086 <uid30086>
+
+	* modules/std.assert.lua, modules/std.base.lua,
+	modules/std.data.macro.lua, modules/std.data.parse.lua,
+	modules/std.data.table.lua, modules/std.debug.lua,
+	modules/std.io.getopt.lua, modules/std.io.io.lua, modules/std.lua,
+	modules/std.patch50.lua, modules/std.rex.lua,
+	modules/std.string.format.lua, modules/std.string.lua,
+	modules/std.string.pickle.lua, modules/std.string.regex.lua,
+	modules/std.string.string.lua, modules/std.text.lua: Another round
+	of changes for Lua 5-ification. This completes the changes to the
+	string library (used to be the text library), and adds std.rex
+	(complements my C rex library). Other changes are mostly to
+	accomodate this; a few extras have snuck in.
+
+2003-09-24  rrt <rrt>
+
+	* modules/std.assert.lua, modules/std.base.lua,
+	modules/std.debug.lua, modules/std.io.env.lua,
+	modules/std.io.getopt.lua, modules/std.string.format.lua,
+	modules/std.string.pickle.lua, modules/std.string.regex.lua,
+	modules/std.string.string.lua, modules/std.text.format.lua,
+	modules/std.text.pickle.lua, modules/std.text.regex.lua,
+	modules/std.text.text.lua: First set of changes moving to Lua 5-like
+	naming conventions for the libraries.
+
+2003-09-14  rrt <rrt>
+
+	* modules/std.text.text.lua: Use math.mod rather than bit.mod for
+	wider compatibility.
+
+2003-09-14  rrt <rrt>
+
+	* modules/std.io.getopt.lua: Wrap notes field of prog structure
+	before output.
+
+2003-09-12  rrt <rrt>
+
+	* modules/std.data.code.lua, modules/std.data.list.lua,
+	modules/std.io.env.lua, modules/std.io.io.lua,
+	modules/std.text.text.lua: More changes to update to Lua 5.0. Nearly
+	there now, I think, as I have several scripts working!
+
+2003-09-11  rrt <rrt>
+
+	* modules/std.data.list.lua, modules/std.data.parse.lua,
+	modules/std.io.getopt.lua, modules/std.text.format.lua,
+	modules/std.text.regex.lua: Another few search-and-replace function
+	names to update to Lua 5.  Mostly string functions this time.
+
+2003-09-09  rrt <rrt>
+
+	* modules/std.data.list.lua, modules/std.data.parse.lua,
+	modules/std.data.set.lua, modules/std.data.table.lua,
+	modules/std.debug.lua, modules/std.io.getopt-POSIX.lua,
+	modules/std.io.getopt.lua, modules/std.text.regex.lua,
+	modules/std.text.text.lua: More search-and-replace and wholesale
+	code removal (notably POSIX getopt) for Lua 5.
+
+2003-09-09  rrt <rrt>
+
+	* README, modules/std.assert.lua, modules/std.debug.lua,
+	modules/std.io.env.lua, modules/std.io.getopt.lua,
+	modules/std.io.io.lua, modules/std.patch50.lua,
+	modules/std.text.text.lua, std.cfg: Another swathe of Lua 5 updates.
+	Now my little script that I'm testing nearly works, which means that
+	quite a lot of the code in the libraries is at least vaguely
+	correct!
+
+2003-09-08  rrt <rrt>
+
+	* modules/std.assert.lua, modules/std.data.code.lua,
+	modules/std.data.global.lua, modules/std.data.list.lua,
+	modules/std.data.logic.lua, modules/std.data.lua,
+	modules/std.data.macro.lua, modules/std.data.object.lua,
+	modules/std.data.set.lua, modules/std.data.table.lua,
+	modules/std.debug.lua, modules/std.io.env.lua,
+	modules/std.io.file.lua, modules/std.io.getopt-POSIX.lua,
+	modules/std.io.getopt.lua, modules/std.io.io.lua, modules/std.lua,
+	modules/std.patch50.lua, modules/std.text.regex.lua,
+	modules/std.text.text.lua: A slew of updates in the march to
+	Lua-5-ify the libraries. I've just been working on a particular
+	small script and changing things "on demand", and I've not even
+	managed to make the script work yet, so there's almost certainly a
+	lot of work still to go.
+
+2003-06-03  rrt <rrt>
+
+	* modules/std.data.code.lua: Convert to Lua 5.0, and some slight
+	tidying.
+
+2003-06-03  rrt <rrt>
+
+	* modules/std.data.set.lua, modules/std.text.text.lua: Do TODOs for
+	Lua 5 (use "le" tagmethod -- will have to become a metamethod) and
+	ability to force a function to return only one result.
+
+2003-06-03  rrt <rrt>
+
+	* modules/std.data.code.lua, modules/std.data.parse.lua,
+	modules/std.data.table.lua, modules/std.debug.lua,
+	modules/std.io.getopt-POSIX.lua, modules/std.io.getopt.lua,
+	modules/std.lua, modules/std.patch40.lua, modules/std.patch50.lua: 
+	Update std.patch40 to std.patch50 for Lua 5. Now none of the other
+	modules need it.
+
+2003-06-03  rrt <rrt>
+
+	* modules/std.io.env.lua: Make readDir return an unsorted list of
+	files. Unfortunately, -U isn't supported by ls on all platforms.
+
+2003-03-13  rrt <rrt>
+
+	* utils/mkdist: Update to match new directory structure (rather
+	overdue!).
+
+2003-01-05  rrt <rrt>
+
+	* modules/std.text.format.lua, modules/std.text.text.lua: Use
+	endOfLine in chomp and wrap.
+
+2002-10-17  rrt <rrt>
+
+	* modules/std.lua: Removed std.logic; now folded into std.data.logic
+
+2002-10-17  rrt <rrt>
+
+	* modules/std.logic.lua: std.logic now merged into std.data.logic.
+
+2002-10-17  rrt <rrt>
+
+	* modules/std.data.logic.lua: Merge the two logic modules.
+
+2002-09-28  rrt <rrt>
+
+	* modules/std.data.table.lua, modules/std.text.pickle.lua,
+	modules/std.text.text.lua: Add tabulate function to use tabulator
+	methods, and use it.
+
+2002-09-10  rrt <rrt>
+
+	* modules/std.logic.lua: Sigh. New bnot didn't work. Next time I'll
+	think and test rather better before straying from the path of
+	righteousness.
+
+2002-09-10  rrt <rrt>
+
+	* modules/std.logic.lua: I was being very dim about bnot. Oops.
+	Roberto pointed it out. I hang my head in shame.
+
+2002-09-10  rrt <rrt>
+
+	* modules/std.logic.lua: Revert to previous version to avoid losing
+	precision (specifically, LSB).
+
+2002-09-09  rrt <rrt>
+
+	* modules/std.logic.lua: Shorter implementation of bxor, and bnot
+	thanks to a remark by Paul Hsieh on lual (Message-Id:
+	<0H26009OMQ9J59@mta5.snfc21.pbi.net>).  Kept band (as the primitive to make bxor) and bor (because de
+	Morganising it would involve a call to bnot and two to band, hence
+	making it three times slower).
+
+2002-09-08  rrt <rrt>
+
+	* modules/std.logic.lua: Poor man's logic functions (for those who
+	can't use bitlib). Also calculate the number of bits in the word.
+
+2002-09-08  rrt <rrt>
+
+	* modules/std.lua: Add std.logic
+
+2002-09-06  rrt <rrt>
+
+	* modules/std.io.getopt.lua: Improve layout of usage message when no
+	command line options (don't have trailing blank line).
+
+2002-09-05  rrt <rrt>
+
+	* modules/std.io.io.lua: Add withFileOrHandle, which takes a
+	filename, handle or uses a default handle, opens the file if
+	appropriate, and passes the handle to a given function.  Use it to generalise readLines and readFile.  It's tempting to generalise writeLine too, but writeLine ("foo",
+	"bar") is ambiguous: do we want to write "foo" and "bar" to _OUTPUT,
+	or "bar" to file "foo"?
+
+2002-09-05  rrt <rrt>
+
+	* modules/std.patch40.lua: Make patches work with any version that
+	starts with "Lua 4.0", to cope with 4.0.1 and any future point
+	releases.  Replace unpack with a recursive version (based on code from John
+	Belmonte) that copes with any number of values.
+
+2002-09-05  rrt <rrt>
+
+	* modules/std.data.list.lua, modules/std.data.table.lua,
+	modules/std.debug.lua: Change "key" to "index" everywhere for
+	consistency.
+
+2002-09-05  rrt <rrt>
+
+	* modules/std.data.table.lua: Improve comments for tinvert
+
+2002-09-05  rrt <rrt>
+
+	* modules/std.data.set.lua: Change intersect tag method to division,
+	and add TODO to implement proper subset tagmethod in Lua 5.0.
+
+2002-09-05  rrt <rrt>
+
+	* modules/std.data.set.lua: Rename intersect to setintersect for
+	consistency, and define setunion (= merge).
+
+2002-08-28  rrt <rrt>
+
+	* modules/std.data.table.lua, modules/std.text.text.lua: Allow
+	stringifier methods again, but they are now only used by tostring.
+	Allows more cosmetic stringification, while not stopping pickling
+	from working.
+
+2002-08-27  rrt <rrt>
+
+	* modules/std.text.pickle.lua, modules/std.text.text.lua: Don't need
+	stringify and pickler tables any more, and tostring and pickle can
+	be simplified. They both use tabulator where necessary.
+
+2002-08-27  rrt <rrt>
+
+	* modules/std.text.pickle.lua, modules/std.text.text.lua: Remove
+	interaction between pickle and tostring, which is no longer needed,
+	as they both now use tabulator methods where necessary.
+
+2002-08-27  rrt <rrt>
+
+	* modules/std.data.table.lua, modules/std.text.pickle.lua,
+	modules/std.text.text.lua: Add tabulator method table for turning
+	arbitrary objects (typically tagged userdata) into tables. Use this
+	to finally fix tostring and pickle. Oh, yes.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: A last gamble. Then I'll have to sit
+	down and work it out again.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Another desperate attempt.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Fix up. I hope. This is starting to
+	drive me insane.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Typo.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Fix default case for pickling.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Fix typo.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua, modules/std.text.text.lua: More
+	fixes.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua, modules/std.text.text.lua: More fixes
+	to pickling. I got in a pickle with this one.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua, modules/std.text.text.lua: Make
+	pickling work properly on numbers and nil by having a "self"
+	parameter for stringifier and pickler functions. They're more like
+	classes now.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Fix buglet (can't concat to nil).
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.text.pickle.lua: Make pickle work for numbers and nil.
+
+2002-08-23  rrt <rrt>
+
+	* modules/std.data.table.lua: Add tinvert, and update some comments
+	to LDoc format.
+
+2002-08-22  rrt <rrt>
+
+	* modules/std.assert.lua: Correct call of warn to expand arg list.
+
+2002-08-15  rrt <rrt>
+
+	* utils/mkdist: Add utility for making zip dist of stdlib.
+
+2002-08-15  rrt <rrt>
+
+	* modules/std.data.table.lua: Add empty to test whether a table is.
+
+2002-08-15  rrt <rrt>
+
+	* std.cfg: Fix paths for new directory structure and get rid of one
+	or two gremlins.
+
+2002-08-15  rrt <rrt>
+
+	* require.lua, std.cfg: Finish editing std.cfg into new form
+	(configuration file with require implementation tacked on the end)
+	and rename it.
+
+2002-08-15  rrt <rrt>
+
+	* modules/std.lua, modules/std.text.format.lua: Update some TODOs.
+
+2002-08-15  rrt <rrt>
+
+	* modules/std.assert.lua, modules/std.data.code.lua,
+	modules/std.data.global.lua, modules/std.data.list.lua,
+	modules/std.data.logic.lua, modules/std.data.lua,
+	modules/std.data.macro.lua, modules/std.data.object.lua,
+	modules/std.data.parse.lua, modules/std.data.set.lua,
+	modules/std.data.table.lua, modules/std.debug.lua,
+	modules/std.io.env.lua, modules/std.io.file.lua,
+	modules/std.io.getopt-POSIX.lua, modules/std.io.getopt.lua,
+	modules/std.io.io.lua, modules/std.io.lua, modules/std.lua,
+	modules/std.patch40.lua, modules/std.text.format.lua,
+	modules/std.text.lua, modules/std.text.pickle.lua,
+	modules/std.text.regex.lua, modules/std.text.text.lua, std.lua,
+	std/std.assert.lua, std/std.data.code.lua, std/std.data.global.lua,
+	std/std.data.list.lua, std/std.data.logic.lua, std/std.data.lua,
+	std/std.data.macro.lua, std/std.data.object.lua,
+	std/std.data.parse.lua, std/std.data.set.lua,
+	std/std.data.table.lua, std/std.debug.lua, std/std.io.env.lua,
+	std/std.io.file.lua, std/std.io.getopt-POSIX.lua,
+	std/std.io.getopt.lua, std/std.io.io.lua, std/std.io.lua,
+	std/std.lua, std/std.patch40.lua, std/std.text.format.lua,
+	std/std.text.lua, std/std.text.pickle.lua, std/std.text.regex.lua,
+	std/std.text.text.lua: Rename std->modules and remove stray std.lua
+
+2002-08-14  rrt <rrt>
+
+	* require.lua: Standardize code style, and make changes (mostly to
+	the comments) to prepare for renaming to std.config, as per John's
+	suggestion. This file will only secondarily contain require, and
+	will typically be built into the Lua system anyway. When we move to
+	Lua 5.0, require will disappear, anyway.
+
+2002-08-14  rrt <rrt>
+
+	* require.lua: John Belmonte's replacement require implementation
+	(5.0-compatible).
+
+2002-08-14  rrt <rrt>
+
+	* std/assert.lua, std/data.lua, std/data/code.lua,
+	std/data/global.lua, std/data/list.lua, std/data/logic.lua,
+	std/data/macro.lua, std/data/object.lua, std/data/parse.lua,
+	std/data/set.lua, std/data/table.lua, std/debug.lua, std/io.lua,
+	std/io/env.lua, std/io/file.lua, std/io/getopt-POSIX.lua,
+	std/io/getopt.lua, std/io/io.lua, std/patch40.lua,
+	std/std.assert.lua, std/std.data.code.lua, std/std.data.global.lua,
+	std/std.data.list.lua, std/std.data.logic.lua, std/std.data.lua,
+	std/std.data.macro.lua, std/std.data.object.lua,
+	std/std.data.parse.lua, std/std.data.set.lua,
+	std/std.data.table.lua, std/std.debug.lua, std/std.io.env.lua,
+	std/std.io.file.lua, std/std.io.getopt-POSIX.lua,
+	std/std.io.getopt.lua, std/std.io.io.lua, std/std.io.lua,
+	std/std.lua, std/std.patch40.lua, std/std.text.format.lua,
+	std/std.text.lua, std/std.text.pickle.lua, std/std.text.regex.lua,
+	std/std.text.text.lua, std/text.lua, std/text/format.lua,
+	std/text/pickle.lua, std/text/regex.lua, std/text/text.lua: 
+	Reorganise directory structure to a flat directory, to cope with Lua
+	5.0 require patterns (so that the libraries can be loaded without
+	making assumptions about directory separators).
+
+2002-08-13  rrt <rrt>
+
+	* std/text.lua: Add the format library to text.
+
+2002-08-13  rrt <rrt>
+
+	* std/assert.lua: Fix buglet in warn.
+
+2002-08-13  rrt <rrt>
+
+	* std/text/format.lua, std/text/text.lua: Move some functions to
+	format.lua to avoid dependency loop text<->assert and to make way
+	for the new pretty printing functions described in a big TODO in
+	format.lua.  Override format in text, so that if it's only passed one argument,
+	it just returns it.
+
+2002-08-13  rrt <rrt>
+
+	* std/io/getopt-POSIX.lua, std/io/getopt.lua: Use capability of warn
+	to take format arguments.
+
+2002-08-13  rrt <rrt>
+
+	* std/assert.lua, std/io/file.lua: Rename affirm to assert, and pass
+	its arguments to the new format function.  Remove the *f functions (which called format); these were unused.
+	Now warn, die and assert can all take format arguments.  affirm->assert in file.lua
+
+2002-08-13  rrt <rrt>
+
+	* std/data/global.lua, std/data/macro.lua, std/data/table.lua,
+	std/text/pickle.lua: Correct punctuation.
+
+2002-08-12  rrt <rrt>
+
+	* std/text.lua, std/text/pickle.lua: Fix a typo loading pickle.lua
+	in text.lua Make pickle escape characters in strings that need it
+
+2002-08-12  rrt <rrt>
+
+	* std/data.lua, std/text.lua, std/text/pickle.lua,
+	std/text/text.lua: Restructure stringifying so that functions in
+	stringifier can produce either a string or a table of stringified
+	index = stringified value pairs.  Use this to write a simple pickle function that can pickle anything
+	that tostring can stringify. pickle and tostring are now effectively
+	just different renderers for the functions in stringifier.
+
+2002-08-12  rrt <rrt>
+
+	* std/data/list.lua: Fix spacing in comments.
+
+2002-08-12  rrt <rrt>
+
+	* std/text/text.lua: Allow new tostring methods to be registered.
+
+2002-08-12  rrt <rrt>
+
+	* std/debug.lua: [no log message]
+
+2002-08-12  rrt <rrt>
+
+	* std/data/table.lua: Debug defaultTable so it uses the initial
+	value given rather than always creating an empty table.
+
+2002-08-12  rrt <rrt>
+
+	* std/data/macro.lua, std/data/table.lua: Add defaultTable to macro.  Move lookup to macro, reimplement it in terms of foldl and
+	subscript, and reimplement pathSubscript in terms of it.
+
+2002-08-12  rrt <rrt>
+
+	* std/data.lua, std/data/logic.lua: Add a logic module to extend
+	band, bor and bxor to lists (just listable them).
+
+2002-08-12  rrt <rrt>
+
+	* std/data/list.lua: Comment list.lua in ldoc format. The other
+	modules will probably follow.
+
+2002-08-12  rrt <rrt>
+
+	* std/data.lua: Include the new macro module.
+
+2002-08-12  rrt <rrt>
+
+	* std/data/global.lua, std/data/macro.lua, std/data/table.lua: Move
+	pathSubscript out of table.lua to avoid a circular dependency, into
+	the new macro.lua module, which also includes some material moved
+	from global.lua.
+
+2002-08-01  rrt <rrt>
+
+	* std/assert.lua, std/debug.lua: Move print from assert to debug.
+	This not only makes sense, but breaks a recursive dependency between
+	assert and text/text.
+
+2002-07-30  rrt <rrt>
+
+	* std.lua: Remove require for now-defunct time.lua, and tidy up the
+	TODOs.
+
+2002-07-30  rrt <rrt>
+
+	* std/io/getopt.lua: Correct endofLine -> endOfLine again; this must
+	have crept back in with the last diff. Using CVS everywhere rather
+	than manual copying will be a Good Thing in this respect!
+
+2002-07-29  rrt <rrt>
+
+	* std/text/text.lua, std/time.lua: Generalised daySuffix to
+	ordinalSuffix. Still English-specific :-(
+
+2002-07-27  rrt <rrt>
+
+	* std/data/table.lua: Improve comment for mapIter
+
+2002-07-26  rrt <rrt>
+
+	* std/data/code.lua: Add constant, a constant function generator.
+
+2002-07-26  rrt <rrt>
+
+	* std/data/table.lua: Use pathSubscript in methodify to allow more
+	convenient macroization of tables.
+
+2002-07-25  rrt <rrt>
+
+	* utils/ldoc: A simple documentation extracter, relying completely
+	on specially formatted comments. There's no documentation at the
+	moment except the patterns in the program, which should be obvious!
+	I'll ldocify all the code shortly and check in instructions with it.  This tool is provisional, and subject to improvement. The TODOs in
+	the file indicate some of my first thoughts in that direction.
+
+2002-07-24  rrt <rrt>
+
+	* std/data/list.lua, std/data/table.lua: Move methodify to table.lua
+	where it belongs (it has nothing to do with lists!)
+
+2002-07-24  rrt <rrt>
+
+	* std/io/getopt.lua: Allow scripts to have no arguments. If you want
+	to display help when just the script is run with no arguments,
+	you'll have to do it manually.
+
+2002-07-24  rrt <rrt>
+
+	* std/io/env.lua: Throw away stderr from shell commands (we don't
+	expect the output to clutter up the screen; it's always possible to
+	capture it by adding a redirection to the command, which will
+	override the one we add).
+
+2002-07-24  rrt <rrt>
+
+	* std/data/table.lua: Add subscript, which exposes [] as a function.
+
+2002-06-22  rrt <rrt>
+
+	* std/io/getopt.lua: Correct endofLine -> endOfLine
+
+2002-06-22  rrt <rrt>
+
+	* Initial revision
+
