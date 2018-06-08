@@ -1,7 +1,7 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "37-1"
+version = "38-1"
 description = {
   detailed = "stdlib is a library of modules for common programming tasks, including list, table and functional operations, objects, pickling, pretty-printing and command-line option parsing.",
   homepage = "http://rrthomas.github.io/lua-stdlib",
@@ -10,13 +10,13 @@ description = {
 }
 -- LuaDist source
 source = {
-  tag = "37-1",
+  tag = "38-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---   dir = "lua-stdlib-release-v37",
---   url = "http://github.com/rrthomas/lua-stdlib/archive/release-v37.zip",
+--   dir = "lua-stdlib-release-v38",
+--   url = "http://github.com/rrthomas/lua-stdlib/archive/release-v38.zip",
 -- }
 dependencies = {
   "lua >= 5.1",
