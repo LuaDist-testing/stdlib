@@ -1,22 +1,22 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "36-1"
+version = "37-1"
 description = {
-  detailed = "stdlib is a library of modules for common programming tasks, including list, table and functional operations, regexps, objects, pickling, pretty-printing and getopt.",
+  detailed = "stdlib is a library of modules for common programming tasks, including list, table and functional operations, objects, pickling, pretty-printing and command-line option parsing.",
   homepage = "http://rrthomas.github.io/lua-stdlib",
   license = "MIT/X11",
   summary = "General Lua Libraries",
 }
 -- LuaDist source
 source = {
-  tag = "36-1",
+  tag = "37-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---   dir = "lua-stdlib-release-v36",
---   url = "http://github.com/rrthomas/lua-stdlib/archive/release-v36.zip",
+--   dir = "lua-stdlib-release-v37",
+--   url = "http://github.com/rrthomas/lua-stdlib/archive/release-v37.zip",
 -- }
 dependencies = {
   "lua >= 5.1",
@@ -28,14 +28,14 @@ build = {
     ["std.base"] = "lib/std/base.lua",
     ["std.container"] = "lib/std/container.lua",
     ["std.debug"] = "lib/std/debug.lua",
-    ["std.debug_init"] = "lib/std/debug_init.lua",
+    ["std.debug_init"] = "lib/std/debug_init/init.lua",
     ["std.functional"] = "lib/std/functional.lua",
-    ["std.getopt"] = "lib/std/getopt.lua",
     ["std.io"] = "lib/std/io.lua",
     ["std.list"] = "lib/std/list.lua",
     ["std.math"] = "lib/std/math.lua",
     ["std.modules"] = "lib/std/modules.lua",
     ["std.object"] = "lib/std/object.lua",
+    ["std.optparse"] = "lib/std/optparse.lua",
     ["std.package"] = "lib/std/package.lua",
     ["std.set"] = "lib/std/set.lua",
     ["std.strbuf"] = "lib/std/strbuf.lua",
