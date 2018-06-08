@@ -53,18 +53,19 @@ subdir = .
 DIST_COMMON = README $(am__configure_deps) $(dist_data_DATA) \
 	$(dist_doc_DATA) $(dist_files_DATA) $(dist_modules_DATA) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/configure $(top_srcdir)/src/std.lua.in AUTHORS \
-	COPYING ChangeLog INSTALL build-aux/install-sh \
-	build-aux/missing
+	$(srcdir)/luarocks-config.lua.in $(top_srcdir)/configure \
+	$(top_srcdir)/src/std.lua.in AUTHORS COPYING ChangeLog INSTALL \
+	build-aux/install-sh build-aux/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_lua.m4 \
-	$(top_srcdir)/m4/ax_with_prog.m4 $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_compare_version.m4 \
+	$(top_srcdir)/m4/ax_lua.m4 $(top_srcdir)/m4/ax_with_prog.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = src/std.lua
+CONFIG_CLEAN_FILES = luarocks-config.lua src/std.lua
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
@@ -145,6 +146,7 @@ LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LTLIBOBJS = @LTLIBOBJS@
 LUA = @LUA@
+LUA_MIN_VERSION = @LUA_MIN_VERSION@
 MAKEINFO = @MAKEINFO@
 MD5SUM = @MD5SUM@
 MKDIR_P = @MKDIR_P@
@@ -216,6 +218,7 @@ EXTRA_DIST = \
 
 DISTCLEANFILES = $(PACKAGE).rockspec
 ROCKSPEC = $(PACKAGE)-$(VERSION)-1.rockspec
+WOGER_ARGS = package=$(PACKAGE) package_name=$(PACKAGE_NAME) archive=stdlib-$(VERSION).zip version=$(VERSION) description="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?.rockspec.in' $(LUA) -l$(PACKAGE) -e 'print (description.summary)'`" notes=release-notes-$(VERSION) dist_type=zip github_user=rrthomas
 all: all-am
 
 .SUFFIXES:
@@ -253,6 +256,8 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
+luarocks-config.lua: $(top_builddir)/config.status $(srcdir)/luarocks-config.lua.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 src/std.lua: $(top_builddir)/config.status $(top_srcdir)/src/std.lua.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-dist_dataDATA: $(dist_data_DATA)
@@ -635,21 +640,26 @@ uninstall-am: uninstall-dist_dataDATA uninstall-dist_docDATA \
 	uninstall-dist_modulesDATA
 
 
-$(ROCKSPEC): $(PACKAGE).rockspec dist
-	sed -e 's/@MD5@/'`$(MD5SUM) $(distdir).zip | cut -d " " -f 1`'/g' < $(PACKAGE).rockspec > $@
-
 html: $(SOURCES)
 	cd src && luadoc *.lua
 
 ChangeLog:
 	git2cl > ChangeLog
 
-release: distcheck $(ROCKSPEC)
+# Depend on distcheck so that 'make release' runs distcheck before
+# making the rockspec, so the release archive MD5sum is correct in the
+# rockspec
+$(ROCKSPEC): $(PACKAGE).rockspec distcheck
+	sed -e 's/_MD5_/'`$(MD5SUM) $(distdir).zip | cut -d " " -f 1`'/g' < $(PACKAGE).rockspec > $@
+
+release: $(ROCKSPEC)
 	grep md5 $(ROCKSPEC) | sed -e 's/[^"]*"\([0-9a-f]\+\)",/\1  $(distdir).zip/' | md5sum --check - && \
 	git diff --exit-code && \
 	git push && \
-	woger lua,github package=$(PACKAGE) package_name=$(PACKAGE_NAME) version=$(VERSION) description="`LUA_INIT= LUA_PATH='$(abs_srcdir)/?.rockspec.in' $(LUA) -l$(PACKAGE) -e 'print (description.summary)'`" notes=release-notes-$(VERSION) dist_type=zip github_user=rrthomas
-	git tag -a -m "Release tag" rel-`echo $(VERSION) | sed -e 's/\./-/g'` && \
+	woger github $(WOGER_ARGS) && \
+	LUAROCKS_CONFIG=$(abs_srcdir)/luarocks-config.lua luarocks --tree=$(abs_srcdir)/luarocks build $(ROCKSPEC) && \
+	woger lua $(WOGER_ARGS) && \
+	git tag -a -m "Release tag" v$(VERSION) && \
 	git push --tags
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

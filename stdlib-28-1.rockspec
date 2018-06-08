@@ -1,17 +1,17 @@
 -- This file was automatically generated for the LuaDist project.
 
 package="stdlib"
-version="27-1"
+version="28-1"
 -- LuaDist source
 source = {
-  tag = "27-1",
+  tag = "28-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---   url = "https://github.com/downloads/rrthomas/lua-stdlib/stdlib-27.zip",
---   md5 = "46c1330960365eb4aacf1a2e9dd6f845",
---   dir = "stdlib-27"
+--   url = "https://github.com/downloads/rrthomas/lua-stdlib/stdlib-28.zip",
+--   md5 = "4856bad5777e5b21482ace6c6806eb2f",
+--   dir = "stdlib-28"
 -- }
 description = {
   summary = "General Lua libraries",
@@ -20,7 +20,7 @@ description = {
       including list, table and functional operations, regexps, objects,
       pickling, pretty-printing and getopt.
    ]],
-  homepage = "http://github.com/rrthomas/stdlib/",
+  homepage = "http://github.com/rrthomas/lua-stdlib/",
   license = "MIT/X11"
 }
 dependencies = {
