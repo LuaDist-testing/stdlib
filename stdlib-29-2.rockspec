@@ -1,9 +1,17 @@
+-- This file was automatically generated for the LuaDist project.
+
 package="stdlib"
-version="29-1"
+version="29-2"
+-- LuaDist source
 source = {
-  url = "git://github.com/rrthomas/lua-stdlib.git",
-  branch = "v29",
+  tag = "29-2",
+  url = "git://github.com/LuaDist-testing/stdlib.git"
 }
+-- Original source
+-- source = {
+--   url = "git://github.com/rrthomas/lua-stdlib.git",
+--   branch = "release-v29",
+-- }
 description = {
   summary = "General Lua libraries",
   detailed = [[
@@ -15,7 +23,7 @@ description = {
   license = "MIT/X11"
 }
 dependencies = {
-  "lua >= 5.1"
+  "lua >= 5.1",
 }
 build = {
   type = "command",
