@@ -1,22 +1,22 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "stdlib"
-version = "38-1"
+version = "39-1"
 description = {
   detailed = "stdlib is a library of modules for common programming tasks, including list, table and functional operations, objects, pickling, pretty-printing and command-line option parsing.",
-  homepage = "http://rrthomas.github.io/lua-stdlib",
+  homepage = "http://lua-stdlib.github.io/lua-stdlib",
   license = "MIT/X11",
   summary = "General Lua Libraries",
 }
 -- LuaDist source
 source = {
-  tag = "38-1",
+  tag = "39-1",
   url = "git://github.com/LuaDist-testing/stdlib.git"
 }
 -- Original source
 -- source = {
---   dir = "lua-stdlib-release-v38",
---   url = "http://github.com/rrthomas/lua-stdlib/archive/release-v38.zip",
+--   dir = "lua-stdlib-release-v39",
+--   url = "http://github.com/lua-stdlib/lua-stdlib/archive/release-v39.zip",
 -- }
 dependencies = {
   "lua >= 5.1",
